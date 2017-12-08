@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <style>
+        #box div {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            display: none;
+        }
+
+        .on {
+            color: #fff;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+        <input type="button" value="书籍" class="on">
+        <input type="button" value="图片">
+        <input type="button" value="专栏">
+        <div style="display:block;">书籍</div>
+        <div>图片</div>
+        <div>专栏</div>
+    </div>
+    <script>
+        var inp = document.querySelectorAll("input");
+        // 获取按钮列表
+        var div = document.querySelectorAll("#box div");
+        // 获取对应盒子列表
+        for (var i = 0; i < inp.length; i++) {
+            inp[i].index = i; //利用自定义属性来记录每个按钮的index
+            inp[i].onclick = function () {
+                for (var j = 0; j < inp.length; j++) {
+                    // 当点击事件发生时，使用排他的效果，去除所有按钮的class和盒子为display：none
+                    inp[j].className = '';
+                    div[j].style.display = "none";
+                }
+                // 然后给当前点击的按钮和对应的盒子设置样式和显示
+                this.className = 'on';
+                div[this.index].style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
