@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快速排序</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /* function quickSort(arr) {
+                    //如果数组<=1,则直接返回
+                    if (arr.length <= 1) {
+                        return arr;
+                    }
+                    var pivotIndex = Math.floor(arr.length / 2); //以数组的中间为基准，并把基准从原数组删除
+                    var pivot = arr.splice(pivotIndex, 1)[0];
+                    //定义左右数组
+                    var left = [];
+                    var right = [];
+
+                    //比基准小的放在left，比基准大的放在right
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i] <= pivot) {
+                            left.push(arr[i]);
+                        } else {
+                            right.push(arr[i]);
+                        }
+                    }
+                    //递归
+                    return quickSort(left).concat([pivot], quickSort(right));
+                } */
+    function quickSort(arr) {
+        if (arr.length <= 1) {
+            // 如果传进来的数组length小于等于1，则直接返回这个数组
+            return arr;
+        }
+        // 如果超过1，则以数组的中间数据为分界点
+        var pivotIndex = Math.floor(arr.length / 2);
+        // 获取中间的值
+        var pivot = arr.splice(pivotIndex, 1)[0];
+        // 定义左右存储数据的数组
+        var left = [],
+            right = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] <= pivot) {
+                // 如果值基准值，则放在左边
+                left.push(arr[i]);
+            } else {
+                // 否则放到右边
+                right.push(arr[i]);
+            }
+        }
+        // 利用递归，重复排列数据，使用concat合并数组 返回最终的排列好的数据 
+        return quickSort(left).concat([pivot], quickSort(right));
+    }
+    var arr = [85, 24, 63, 45, 17, 31, 96, 50];
+
+    console.log(quickSort(arr));
+</script>
+
+</html>
