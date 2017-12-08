@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            width: 500px;
+            height: 300px;
+            background-color: #ccc;
+            margin: 0 auto;
+            overflow: hidden;
+            margin-top: 100px;
+            position: relative;
+        }
+
+        ul {
+            width: 600%;
+            position: absolute;
+            height: 300px;
+            left: 0px;
+            top: 0;
+            -webkit-transition: all .5s ease-in;
+            -moz-transition: all .5s ease-in;
+            transition: all .5s ease-in;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+        }
+
+        li img {
+            width: 500px;
+            height: 300px;
+        }
+
+        .banner div {
+            width: 50px;
+            height: 300px;
+            position: absolute;
+            text-align: center;
+            -webkit-transition: all .5s ease-in;
+            -moz-transition: all .5s ease-in;
+            transition: all .5s ease-in;
+        }
+
+        .banner div a {
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            line-height: 300px;
+            color: #fff;
+            text-align: center;
+            -webkit-transition: all .5s ease-in;
+            -moz-transition: all .5s ease-in;
+            transition: all .5s ease-in;
+        }
+
+        .banner div:hover {
+            background-color: rgba(0, 0, 0, .1);
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <ul>
+            <li>
+                <img src="./images/1.jpg">
+            </li>
+            <li>
+                <img src="./images/2.jpg">
+            </li>
+            <li>
+                <img src="./images/3.jpg">
+            </li>
+            <li>
+                <img src="./images/4.jpg">
+            </li>
+            <li>
+                <img src="./images/5.jpg">
+            </li>
+            <li>
+                <img src="./images/1.jpg">
+            </li>
+
+        </ul>
+        <div class="left">
+            <a href="javascript:;">《</a>
+        </div>
+        <div class="right">
+            <a href="javascript:;">》</a>
+        </div>
+    </div>
+</body>
+<script>
+    var divs = document.querySelectorAll(".banner div");
+    var left = document.querySelector(".left");
+    var right = document.querySelector(".right");
+    var box = document.querySelector(".banner ul");
+    for (var i = 0; i < divs.length; i++) {
+        divs[i].onclick = function () {
+            shift(this);
+        }
+    }
+    var step = 500;
+    var index = 0;
+
+    function shift(name) {
+        if (name.className == "left") {
+            index++;
+            if (index >= 0) {
+                box.style.left = 0;
+                index = 0;
+            }
+            console.log(index)
+            box.style.left = (step * index) + 'px';
+        } else if (name.className == "right") {
+            index = index - 1;
+
+            console.log(index);
+            console.log(step * index);
+            box.style.left = (step * index) + 'px';
+            if (Math.abs(index) >= 5) {
+                box.style.left = 0 + 'px';
+                index = 0;
+            }
+        }
+    }
+</script>
+
+</html>
