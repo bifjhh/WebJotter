@@ -1,0 +1,21 @@
+# 初识react
+ 1. react并不是一个完整的MVC MVVM框架
+ 2. react 跟 Web Components 不冲突
+ 3. react的特点就是轻
+ 4. 组件化开发的思路
+
+# react的应用场景
+ 1. 复杂场景下的高性能
+ 2. 重用组件库，组件组合
+ 3.  懒 
+
+# 基本语法
+ - react-jsx-style
+ - 语法糖，为便于开发者开发，减少出错机会的语法，对于语法本身并没有什么影响
+    + 语法糖，最终都是要解析为正常的JavaScript 来执行的
+ - jsx
+    + JavaScript XML
+    + react的js语法糖
+    + 首先引入react的js库
+    + 然后引入解析语法糖的库，才能将react解析为正常的JavaScript
+    
