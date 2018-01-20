@@ -8,11 +8,13 @@
       </li>
     </ul>
     <router-view/>
+    <componentA></componentA>
   </div>
 </template>
 
 <script>
 import store from "./store"; //调用封装好的函数
+import componentA from './components/componentA';
 export default {
   name: "App",
   data() {
@@ -22,6 +24,7 @@ export default {
       newItem: ""
     };
   },
+  components: { componentA },
   watch: {
     items: {
       //检测items数据发生变化
