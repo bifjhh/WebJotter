@@ -13,9 +13,11 @@ export default {
             msg:'hello component!'
         }
     },
+    props:['msgage'],
     methods:{
         onClickMe(){
-            
+            console.log(this.msgage);
+            this.$emit('child-tell-me-something','child-tell-me-something')
         }
     }
 };

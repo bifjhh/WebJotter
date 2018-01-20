@@ -8,7 +8,7 @@
       </li>
     </ul>
     <router-view/>
-    <componentA></componentA>
+    <componentA msgage="hello msgage" v-on:child-tell-me-something="mssage"></componentA>
   </div>
 </template>
 
@@ -42,6 +42,9 @@ export default {
     addNew() {
       this.items.push({ label: this.newItem, isFinished: false });
       this.newItem = ""; //添加过新的事项之后，清空input内的数据
+    },
+    mssage(msg){
+      console.log(msg);
     }
   }
 };
