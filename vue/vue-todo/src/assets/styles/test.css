@@ -1,0 +1,11 @@
+body{
+    color:red;
+    background: url('../images/bg.jpg');
+}
+input,
+button {
+  outline-style: none;
+  border: none;
+}
+
+
