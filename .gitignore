@@ -1,3 +1,6 @@
 /.git
 /.idea
 /*node_modules
+*.psd
+*.project
+*bantuH5.pxcp

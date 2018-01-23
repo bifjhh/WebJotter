@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>个人名片</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="lib/jquery.fullPage.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">!function (e, t) { function n() { t.body ? t.body.style.fontSize = 12 * o + "px" : t.addEventListener("DOMContentLoaded", n) } function d() { var e = i.clientWidth / 10; i.style.fontSize = e + "px" } var i = t.documentElement, o = e.devicePixelRatio || 1; if (n(), d(), e.addEventListener("resize", d), e.addEventListener("pageshow", function (e) { e.persisted && d() }), o >= 2) { var a = t.createElement("body"), s = t.createElement("div"); s.style.border = ".5px solid transparent", a.appendChild(s), i.appendChild(a), 1 === s.offsetHeight && i.classList.add("hairlines"), i.removeChild(a) } }(window, document);</script>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/animate.css"/>-->
+
+</head>
+
+<body>
+    <div id="dowebok">
+        <!--每一个section就是一屏-->
+        <div class="section first ">
+            <strong class="card">XXX的名片</strong>
+        </div>
+        <div class="section second ">
+            <div class="second-t-l"></div>
+            <div class="second-t-r"></div>
+            <div class="second-b-l"></div>
+            <div class="second-b-r"></div>
+            <div class="second-info">
+                <div class="portrait"></div>
+                <ul>
+                    <li>姓名：<span></span></li>
+                    <li>职位：<span></span></li>
+                    <li>公司：<span></span></li>
+                    <li>手机：<span></span></li>
+                    <li>邮箱：<span></span></li>
+                    <li>固话：<span></span></li>
+                    <li>网址：<span></span></li>
+                    <li>地址：<span></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section third">
+            <div class="third-t-l"></div>
+            <div class="third-t-r"></div>
+            <div class="third-b-l"></div>
+            <div class="third-b-r"></div>
+            
+        </div>
+
+        <div class="section fourth">
+            <h1>我是04</h1>
+        </div>
+
+    </div>
+    <script>
+        $(function () {
+            $('#dowebok').fullpage({
+                /*设置每一屏的背景色*/
+                // sectionsColor: ['#0da5d6', '#2AB561', '#DE8910', '#16BA9D', '#0DA5D6'],
+                /*当滚动到某一屏之后调用
+                 * index:当前屏的索引，索引从1开始*/
+                afterLoad: function (anchorLink, index) {
+                    // 将其它屏的current标记移除
+                    $(".section").removeClass("current");
+                    // alert(index);
+                    setTimeout(function () {
+                        /*当滚动到某一个屏之后，添加样式标记*/
+                        $(".section").eq(index - 1).addClass("current");
+                    }, 200);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
