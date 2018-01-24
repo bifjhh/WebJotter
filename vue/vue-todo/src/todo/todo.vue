@@ -13,7 +13,11 @@
       :key="todo.id"
       @del="del"
        />
-      <Tabs :filter="filter"></Tabs>
+      <Tabs 
+      :filter="filter" 
+      :todos="todos"
+      @toggle="toggleFilter"
+      ></Tabs>
   </section>
 </template>
 <script>
@@ -31,7 +35,19 @@ export default {
       filter: "all"
     };
   },
+  computed:{
+    filteredTodos(){
+      if(this.filter ==='all'){
+        return this.todos;
+      };
+      const completed = this.filter === 'completed';
+      return this.todos.filter(todo => completed ==todo.completed)
+    }
+  },
   methods: {
+    toggleFilter() {
+      this.filter = state;
+    },
     addTodo(e) {
       if (e.target.value.trim() == "") {
         alert("您还没有输入内容");
