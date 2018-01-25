@@ -167,7 +167,9 @@ body {
   background-size: 100% 100%;
 }
 .second .second-info,
-.third .second-info {
+.third .second-info,
+.second .third-info,
+.third .third-info {
   box-sizing: border-box;
   position: absolute;
   left: 50%;
@@ -185,18 +187,23 @@ body {
   /* 信息列表效果 */
 }
 .second .second-info .portrait,
-.third .second-info .portrait {
+.third .second-info .portrait,
+.second .third-info .portrait,
+.third .third-info .portrait {
   position: absolute;
   width: 2.32rem;
   height: 2.32rem;
   right: 0;
+  opacity: 0;
   transform: translateY(-50%);
   box-sizing: border-box;
   border: 3px solid #142142;
   border-radius: 5px;
 }
 .second .second-info ul,
-.third .second-info ul {
+.third .second-info ul,
+.second .third-info ul,
+.third .third-info ul {
   position: absolute;
   height: 0;
   width: 7.24rem;
@@ -204,12 +211,16 @@ body {
   text-align-last: left;
 }
 .second .second-info ul li,
-.third .second-info ul li {
+.third .second-info ul li,
+.second .third-info ul li,
+.third .third-info ul li {
   position: relative;
   overflow: hidden;
 }
-.second .second-info ul li > span,
-.third .second-info ul li > span {
+.second .second-info ul li span,
+.third .second-info ul li span,
+.second .third-info ul li span,
+.third .third-info ul li span {
   font-weight: 400;
   opacity: 0;
 }
@@ -227,6 +238,7 @@ body {
     transform: rotate(3deg);
   }
 }
+/* 第三屏效果 */
 /* 第二屏触发后效果 cur */
 .cur .second-bg,
 .cur .third-bg {
@@ -259,6 +271,10 @@ body {
   transition: all 0.3s 1s cubic-bezier(0, 0, 0.29, 1.04);
   bottom: 0;
 }
+.cur .second-info .portrait {
+  transition: all 3s 2s cubic-bezier(0, 0, 0.29, 1.04);
+  opacity: 1;
+}
 .cur .second-info ul {
   transition: all 4s ease-out;
   height: 7.33333333rem;
@@ -290,7 +306,23 @@ body {
 .cur .second-info ul .info-site {
   transition: all 11s 1s ease-out;
 }
-/* 第三屏效果 */
+/* 第三屏触发后效果 */
+.cur .third-info ul {
+  transition: all 8s ease-out;
+  height: 7.33333333rem;
+}
+.cur .third-info ul li span {
+  opacity: 1;
+}
+.cur .third-info ul li:nth-of-type(2) {
+  margin-top: 1em;
+}
+.cur .third-info ul .info-intro {
+  transition: all 6s 1s ease-out;
+}
+.cur .third-info ul .info-scope {
+  transition: all 8s 1s ease-out;
+}
 /* 第四屏效果 */
 .fourth {
   position: relative;
