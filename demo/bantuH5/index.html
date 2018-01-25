@@ -84,6 +84,7 @@
 <script>
     var forEach = [].forEach;
     document.getElementsByClassName('wp-inner')[0].fullpage({
+        drag: false,
         change: function (e) {
             // 移除动画属性
             // document.querySelectorAll('.page')[e.cur].querySelectorAll('.div') 使用 call方法 借用 forEach 方法 传入函数 获取当前对象 val 值

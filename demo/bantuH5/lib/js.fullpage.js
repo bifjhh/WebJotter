@@ -20,7 +20,7 @@
     };
 
     function touchmove(e) {
-        // e.preventDefault();
+        e.preventDefault();
     }
 
     function fix(cur, pagesLength, loop) {
