@@ -52,8 +52,16 @@ body {
   font-size: 14px;
   line-height: 1.8;
 }
-#dowebok .section {
-  box-sizing: border-box;
+.wp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.page {
+  position: relative;
 }
 /* 第一页 首页效果 */
 .first {
@@ -82,12 +90,12 @@ body {
   bottom: 3.41333333rem;
   opacity: 0;
 }
-/* 第一页触发后效果 current */
-.current .first-bg {
+/* 第一页触发后效果 cur */
+.cur .first-bg {
   transition: all 3s cubic-bezier(0, 0, 0, 0.99);
   top: 0;
 }
-.current .card {
+.cur .card {
   transition: all 3.2s 1s ease-out;
   opacity: 1;
 }
@@ -219,67 +227,67 @@ body {
     transform: rotate(3deg);
   }
 }
-/* 第二屏触发后效果 current */
-.current .second-bg,
-.current .third-bg {
+/* 第二屏触发后效果 cur */
+.cur .second-bg,
+.cur .third-bg {
   transition: all 1s cubic-bezier(0.4, 0, 1, 0.99);
   opacity: 1;
 }
-.current .second-t-l,
-.current .third-t-l {
+.cur .second-t-l,
+.cur .third-t-l {
   transition: all 0.5s cubic-bezier(0, 0, 0.29, 1.04);
   top: 0;
   left: 0;
 }
-.current .second-t-r,
-.current .third-t-r {
+.cur .second-t-r,
+.cur .third-t-r {
   right: -0.26666667rem;
   transform-origin: 100% 80%;
   transition: all 1.2s 0.5s cubic-bezier(0, 0, 0.29, 1.04);
   animation: rotate-l 4s 1.7s ease-out infinite alternate;
 }
-.current .second-b-l,
-.current .third-b-l {
+.cur .second-b-l,
+.cur .third-b-l {
   left: -0.42666667rem;
   bottom: -0.33333333rem;
   transform-origin: 0% 100%;
   transition: left 1.2s 0.5s cubic-bezier(0, 0, 0.29, 1.04);
   animation: rotate-l 4s 1.7s ease-out infinite alternate;
 }
-.current .second-b-r,
-.current .third-b-r {
+.cur .second-b-r,
+.cur .third-b-r {
   transition: all 0.3s 1s cubic-bezier(0, 0, 0.29, 1.04);
   bottom: 0;
 }
-.current .second-info ul {
+.cur .second-info ul {
   transition: all 4s ease-out;
   height: 7.33333333rem;
 }
-.current .second-info ul li span {
+.cur .second-info ul li span {
   opacity: 1;
 }
-.current .second-info ul .info-name {
+.cur .second-info ul .info-name {
   transition: all 4s 1s ease-out;
 }
-.current .second-info ul .info-post {
+.cur .second-info ul .info-post {
   transition: all 5s 1s ease-out;
 }
-.current .second-info ul .info-units {
+.cur .second-info ul .info-units {
   transition: all 6.5s 1s ease-out;
 }
-.current .second-info ul .info-phone {
+.cur .second-info ul .info-phone {
   transition: all 7s 1s ease-out;
 }
-.current .second-info ul .info-mail {
+.cur .second-info ul .info-mail {
   transition: all 8.5s 1s ease-out;
 }
-.current .second-info ul .info-tel {
+.cur .second-info ul .info-tel {
   transition: all 9s 1s ease-out;
 }
-.current .second-info ul .info-url {
+.cur .second-info ul .info-url {
   transition: all 10.5s 1s ease-out;
 }
-.current .second-info ul .info-site {
+.cur .second-info ul .info-site {
   transition: all 11s 1s ease-out;
 }
 /* 第三屏效果 */
@@ -288,11 +296,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-.fourth .fp-tableCell {
-  width: 100%;
-  height: 100%;
-}
-.fourth .fp-tableCell .fourth-t {
+.fourth .fourth-t {
   position: absolute;
   top: -70%;
   left: -5%;
@@ -301,7 +305,7 @@ body {
   background: url("../img/n03/bg-t.png") no-repeat center;
   background-size: 100% 100%;
 }
-.fourth .fp-tableCell .fourth-b {
+.fourth .fourth-b {
   position: absolute;
   bottom: -70%;
   left: -5%;
@@ -310,7 +314,7 @@ body {
   background: url("../img/n03/bg-b.png") no-repeat center;
   background-size: 100% 100%;
 }
-.fourth .fp-tableCell .fourth-code {
+.fourth .fourth-code {
   position: absolute;
   width: 3.49333333rem;
   height: 3.49333333rem;
@@ -321,20 +325,20 @@ body {
   background-size: 100% 100%;
   opacity: 0;
 }
-/* 第四屏触发后效果 current */
-.current .fp-tableCell .fourth-t {
+/* 第四屏触发后效果 cur */
+.cur .fourth-t {
   transition: all 2s ease-in-out;
   top: -5%;
   transform-origin: 50% 50%;
   animation: rotate-l 15s 2s ease-out infinite alternate;
 }
-.current .fp-tableCell .fourth-b {
+.cur .fourth-b {
   transition: all 2s ease-in-out;
   bottom: -5%;
   transform-origin: 50% 50%;
   animation: rotate-l 15s 2s ease-out infinite alternate;
 }
-.current .fp-tableCell .fourth-code {
+.cur .fourth-code {
   transition: all 1.5s 2s ease-in-out;
   opacity: 1;
 }
