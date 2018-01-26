@@ -9,7 +9,7 @@
       >
       <Item 
       :todo="todo"
-      v-for="todo in todos"
+      v-for="todo in filteredTodos"
       :key="todo.id"
       @del="del"
        />
@@ -17,6 +17,7 @@
       :filter="filter" 
       :todos="todos"
       @toggle="toggleFilter"
+      @clearAllcompleted="clearAllcompleted"
       ></Tabs>
   </section>
 </template>
@@ -45,8 +46,11 @@ export default {
     }
   },
   methods: {
-    toggleFilter() {
+    toggleFilter(state) {
       this.filter = state;
+    },
+    clearAllcompleted(){
+      this.todos= this.todos.filter(todo=>!todo.completed);
     },
     addTodo(e) {
       if (e.target.value.trim() == "") {

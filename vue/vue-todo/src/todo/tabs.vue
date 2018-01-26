@@ -26,14 +26,17 @@ export default {
   },
   computed: {
     unFinishedTodoLength() {
-      return this.todos.filter(todo => !todo.completed).length;
+      // console.log(todo);
+      return this.todos.filter(todo => !todo.completed ).length;
     }
   },
   methods: {
     toggleFilter(state) {
-        this.$emit('toggle',state)
+      this.$emit('toggle',state);
     },
-    clearAllcompleted() {}
+    clearAllcompleted() {
+      this.$emit('clearAllcompleted');
+    }
   }
 };
 </script>
