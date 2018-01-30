@@ -1,0 +1,237 @@
+html,body{
+    background-color: #f3f2f2;
+}
+
+.float{
+    // display: none;
+    width: 156/75rem;
+    height: 104/75rem;
+    position: fixed;
+    background: url('../img/up.png') no-repeat center;
+    background-size: 100% 100%;
+    bottom: 0;
+    left: 50%;
+    opacity: .8;
+    transform: translateX(-50%) ;
+    // animation: flt .4s  ease-out infinite alternate;
+    animation: up-and-down 1.5s linear infinite;;
+}
+// @keyframes flt {
+//     0%{bottom: 10/75rem;}
+//     100%{bottom: 0;}
+// }
+
+@keyframes up-and-down {
+  0% {
+    transform:translateX(-50%) translateY(0px) scale(0.5, 0.5);
+  }
+  25% {
+    transform:translateX(-50%) translateY(-10px) scale(0.5, 0.5);
+  }
+  50% {
+    transform:translateX(-50%) translateY(-20px) scale(0.5, 0.5);
+  }
+  75% {
+    transform:translateX(-50%) translateY(-10px) scale(0.5, 0.5);
+  }
+  100% {
+    transform:translateX(-50%) translateY(0px) scale(0.5, 0.5);
+  }
+}
+/* 第一页效果 first */
+.first{
+    position: relative;
+    background: url("../img/linellae/home.png") no-repeat center;
+    background-size: 100% 100%;
+    .first-bg{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url("../img/linellae/home-bg.png") no-repeat center;
+        background-size: 100% 100%;
+    }
+    .card{
+        position: absolute;
+        bottom: 260/75rem;
+        left: 0;
+        font-size: 85/75rem;
+        line-height: 70/75rem;
+        color: #6e6e6e;
+        padding-bottom: 23/75rem;
+        padding-left: 40/75rem;
+        border-bottom: 12/75rem solid #000;
+    }
+}
+
+/* 第一页效果 */
+.cur{
+
+}
+
+/* 第二页 second */
+.second{
+    position: relative;
+    background: url('../img/linellae/no1-bg.png') no-repeat center;
+    background-size: 100% 100%;
+    .second-l{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 400/75rem;
+        height: 900/75rem;
+        background: url('../img/linellae/no1-l.png') no-repeat center; 
+        background-size: 100% 100%;
+    }
+    .second-r{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 400/75rem;
+        height: 710/75rem;
+        background: url('../img/linellae/no1-r.png') no-repeat center; 
+        background-size: 100% 100%;
+    }
+    .portrait{
+        position: absolute;
+        top: 90/75rem;
+        left: 60/75rem;
+        box-sizing: border-box;
+        width:234/75rem;
+        height:234/75rem;
+        border: 10/75rem solid #6f6f6f;
+    }
+    .info1{
+        position: absolute;
+        left: 200/75rem;
+        top: 420/75rem;
+        width: 405/75rem;
+        font-size: 32/75rem;
+        font-weight: 600;
+        li{
+            padding:.8em  0;
+        }
+        span{
+            font-weight: normal;
+            white-space:nowrap;
+            font-size: 32/75rem;   
+        }
+    }
+    .info2{
+        position: absolute;
+        top: 815/75rem;
+        left: 310/75rem;
+        width: 420/75rem;
+        font-size: 32/75rem;
+        font-weight: 600;
+        li{
+            padding:.7em  0;
+        }
+       span{
+            font-weight: normal;
+            white-space:nowrap;
+            font-size: 32/75rem;
+       }
+    }
+}
+
+/* 第二页效果 */
+.cur{
+
+}
+
+/* 第三页 third */
+.third{
+    position: relative;
+    .third-bg{
+        position: absolute;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../img/linellae/no3-bg.jpg') no-repeat center;
+        background-size: 100% 100%;
+        padding: 50/75rem;
+        .third-shard{
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            background-color: #000;
+            opacity: .2;
+        }
+    }
+    .third-info{
+        position: absolute;
+        color: #fff;
+        top: 100/75rem;
+        left: 60/75rem;
+        li{
+            margin-top: 1em;
+        }
+    }
+}
+
+/* 第三页效果 */
+.cur{
+
+}
+
+/* 第四页 fourth */
+.fourth{
+    background: url('../img/linellae/no4-bg.png') no-repeat center;
+    background-size: 100% 100%;
+    position: relative;
+    .fourth-t{
+        position: absolute;
+        top: -231/75rem;
+        left: -717/75rem;
+        width: 1588/75rem;
+        height: 1530/75rem;
+        background: url('../img/linellae/no4circle.png') no-repeat center;
+        background-size: 100% 100%;
+        transform:rotate(0deg);
+    }
+    .fourth-b{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        color: #FFF;
+        width: 343/75rem;
+        height: 347/75rem;
+        background: url('../img/linellae/no4-add.png') no-repeat center;
+        background-size: 100% 100%;
+        >span:nth-of-type(1){
+            position: absolute;
+            left: 198/75rem;
+            bottom: 74/75rem;
+            font-size: 47/75rem;
+        }
+        >span:nth-of-type(2){
+            position: absolute;
+            left: 133/75rem;
+            bottom: 14/75rem;
+            font-size: 47/75rem;
+        }
+        
+    }
+    .fourth-code{
+        position: absolute;
+        box-sizing: border-box;
+        top: 376/75rem;
+        left: 0;
+        width: 243/75rem;
+        height: 248/75rem;
+        border: 10/75rem solid #000;
+    }
+}
+
+/* 第四页效果 */
+.cur{
+    .fourth-t{
+        transition: all 150s ease-out;
+        transform:rotate(360deg);
+    }
+}
