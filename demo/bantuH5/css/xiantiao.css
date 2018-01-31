@@ -84,15 +84,15 @@ body {
 }
 .first.cur .first-bg {
   opacity: 1;
-  transition: all 3s 1s ease-in-out;
+  transition: all 3s 0.5s ease-in-out;
 }
 .first.cur .card .info-name {
   opacity: 1;
-  transition: all 1.5s 2s ease-in-out;
+  transition: all 1s 2s ease-in-out;
 }
 .first.cur .card .info-hr {
   width: 3.41333333rem;
-  transition: all 1s 1.5s ease-in-out;
+  transition: all 0.7s 1.5s ease-in-out;
 }
 /* 第二页 second */
 .second {
@@ -253,7 +253,7 @@ body {
   background: url('../img/linellae/no3-bg.png') no-repeat center;
   background-size: 100% 100%;
   padding: 0.66666667rem;
-  transform: rotate(0deg) scale(0.2, 0.1);
+  transform: rotate(0deg) scale(0, 0);
 }
 .third .third-bg .third-shard {
   border-radius: 5px;
@@ -282,17 +282,17 @@ body {
   animation: third 6s 4s linear infinite;
 }
 .third.cur .third-bg {
-  transition: all 4s ease-in-out;
+  transition: all 2s ease-in-out;
   background: url('../img/linellae/no3-bg1.png') no-repeat center;
   background-size: 100% 100%;
   transform: rotate(0deg) scale(1, 1);
 }
 .third.cur .third-bg .third-shard {
-  transition: all 4s 2.5s ease-in-out;
+  transition: all 2s 1.2s ease-in-out;
   opacity: .2;
 }
 .third.cur .third-info ul {
-  transition: all 3s 5s ease-in-out;
+  transition: all 4s 1s ease-in-out;
   height: 5rem;
 }
 @keyframes third {
