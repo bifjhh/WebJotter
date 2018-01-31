@@ -353,6 +353,7 @@ html,body{
         background: url('../img/linellae/no4circle.png') no-repeat center;
         background-size: 100% 100%;
         transform:rotate(0deg);
+        animation: fourth-t 150s linear infinite;
     }
     .fourth-b{
         position: absolute;
@@ -387,11 +388,8 @@ html,body{
         border: 10/75rem solid #000;
     }
 }
-
-/* 第四页效果 */
-.cur{
-    .fourth-t{
-        transition: all 150s ease-out;
-        transform:rotate(360deg);
-    }
+@keyframes fourth-t {
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
 }
+/* 第四页效果 */
