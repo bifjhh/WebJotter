@@ -5,18 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>个人名片</title>
-    
-    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+    <title>个人名片--线条</title>
     <script src="lib/zepto.js" type="text/javascript" charset="utf-8"></script>
-    <!-- <script src="./lib/zepto.fullpage.js"></script> -->
-    <script src="lib/js.fullpage.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./lib/zepto.fullpage.js"></script>
+    <!-- <script src="lib/js.fullpage.js" type="text/javascript" charset="utf-8"></script> -->
     <!--<link rel="stylesheet" type="text/css" href="css/animate.css"/>-->
     <script type="text/javascript" charset="utf-8">!function (e, t) { function n() { t.body ? t.body.style.fontSize = 12 * o + "px" : t.addEventListener("DOMContentLoaded", n) } function d() { var e = i.clientWidth / 10; i.style.fontSize = e + "px" } var i = t.documentElement, o = e.devicePixelRatio || 1; if (n(), d(), e.addEventListener("resize", d), e.addEventListener("pageshow", function (e) { e.persisted && d() }), o >= 2) { var a = t.createElement("body"), s = t.createElement("div"); s.style.border = ".5px solid transparent", a.appendChild(s), i.appendChild(a), 1 === s.offsetHeight && i.classList.add("hairlines"), i.removeChild(a) } }(window, document);</script>
-    <link rel="stylesheet" type="text/css" href="./lib/zepto.fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
     <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <script>
+    <link rel="stylesheet" type="text/css" href="css/xiantiao.css" />
+    <link rel="stylesheet" type="text/css" href="./lib/zepto.fullpage.css" />
+   <!--  <script>
         $(function () {
             // // 封装正则--用来获取url地址后的参数
             function GetQueryString(name) {
@@ -82,33 +81,29 @@
         });
         /* 
     
-    1 获取code 在确保微信公众账号拥有授权作用域（scope参数）的权限的前提下（服务号获得高级接口后，默认拥有scope参数中的snsapi_base和snsapi_userinfo），引导关注者打开如下页面： 
     
-    https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxba6f729bc6aa5ddc&redirect_uri=http://192.168.2.109/details.html&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
-         */
-    </script>
+    </script> -->
 </head>
 
 <body>
-    <div id="dowebok" class="wp">
+    <div class="wp">
         <div class="wp-inner">
             <!-- first 第一屏 首页 -->
             <div class="page first ">
+                <div class="first-b"></div>
                 <div class="first-bg"></div>
                 <strong class="card">
-                    <span class="info-name" id="name"></span>
+                    <span class="info-name" id="name">xxx的名片</span>
+                    <div class="info-hr"></div>
                 </strong>
             </div>
             <!-- second 第二屏 个人信息展示 -->
             <div class="page second ">
-                <div class="second-bg"></div>
-                <div class="second-t-l"></div>
-                <div class="second-t-r"></div>
-                <div class="second-b-l"></div>
-                <div class="second-b-r"></div>
+                <div class="second-l"></div>
+                <div class="second-r"></div>
+                <div class="portrait"></div>
                 <div class="second-info">
-                    <div class="portrait"></div>
-                    <ul>
+                    <ul class="info1">
                         <li>姓名：
                             <span class="info-name" id="namei">  </span>
                         </li>
@@ -121,6 +116,9 @@
                         <li>手机：
                             <span class="info-phone" id="mobile">  </span>
                         </li>
+                    </ul>
+
+                    <ul class="info2">
                         <li>邮箱：
                             <span class="info-mail" id="email">  </span>
                         </li>
@@ -138,31 +136,39 @@
             </div>
             <!-- third 第三屏 公司简介 -->
             <div class="page third">
-                <div class="third-bg"></div>
-                <div class="third-t-l"></div>
-                <div class="third-t-r"></div>
-                <div class="third-b-l"></div>
-                <div class="third-b-r"></div>
+                <div class="third-bg1"></div>
+                <div class="third-bg">
+                    <div class="third-shard"></div>
+                </div>
                 <div class="third-info">
                     <ul>
-                        <li>公司简介：<span id="intro" class="info-intro"></span></li>
-                        <li>经营范围：<span id="scope" class="info-scope"></span></li>
+                        <li>公司简介：
+                            <span id="intro" class="info-intro"></span>
+                        </li>
+                        <li>经营范围：
+                            <span id="scope" class="info-scope"></span>
+                        </li>
                     </ul>
                 </div>
             </div>
             <!-- fourth 第四屏 二维码展示 -->
             <div class="page fourth">
                 <div class="fourth-t"></div>
-                <div class="fourth-b"></div>
+                <div class="fourth-b">
+                    <span>保存到</span>
+                    <span>名片夹</span>
+                </div>
                 <div class="fourth-code"></div>
             </div>
         </div>
+        <div id="up" class="float"></div>
     </div>
 </body>
 <script>
-    var forEach = [].forEach;
+   /*  var forEach = [].forEach;
     document.getElementsByClassName('wp-inner')[0].fullpage({
         drag: false,
+        loop:true,
         change: function (e) {
             // 移除动画属性
             // document.querySelectorAll('.page')[e.cur].querySelectorAll('.div') 使用 call方法 借用 forEach 方法 传入函数 获取当前对象 val 值
@@ -179,7 +185,14 @@
                 v.classList.remove('hide');
             });
         }
+    }); */
+    $('.wp-inner').fullpage({
+        drag: false,
     });
-</script> 
+        $('#up').on('click', function (e) {
+            e.preventDefault();
+            $.fn.fullpage.moveNext(true);
+        });
+</script>
 
 </html>
