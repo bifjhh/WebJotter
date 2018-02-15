@@ -4,3 +4,6 @@
 *.psd
 *.project
 *bantuH5.pxcp
+*.gitignore
+*.vscode
+/node/itcast/day02/03-Apache/*node_modules
