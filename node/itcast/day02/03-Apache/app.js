@@ -25,7 +25,7 @@ http.createServer(function(req,res){
         if(err){
             res.end('文件不存在 404');
         }else{
-            // 通过第三方模块 mime 来判断不同的资源对应的Content-Type类型 
+            // 通过第npm三方模块 mime 来判断不同的资源对应的Content-Type类型 
             res.setHeader('Content-Type',mime.getType(filename));
             // 如果找到了文件,直接返回该文件
             res.end(data);

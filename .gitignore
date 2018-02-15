@@ -7,3 +7,4 @@
 *.gitignore
 *.vscode
 /node/itcast/day02/03-Apache/*node_modules
+/node/itcast/day02/04-url就是一个标识/*node_modules
