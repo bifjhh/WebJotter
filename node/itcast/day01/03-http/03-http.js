@@ -11,8 +11,12 @@ var server = http.createServer();
 // response 对象用来向用户相应一些数据,当服务器要向客服端相应数据的时候,必须使用response 对象
 // 有了 request对象和 response 对象.就既可以获取用户提交的数据,也可以向用户相应数据了
 server.on('request', function (request, response) {
-    // bady...
-    response.write('Hello HttpServer!!!');
+
+
+    // 解决乱码的思路,服务器通过设置http 相应报文头,告诉浏览器使用相应的编码来解析网页
+    response.setHeader('Content-Type', 'text/html;charset=utf-8');
+    
+    response.write('<h5>Hello HttpServer!解决乱码的思路,服务器通过设置http 相应报文头,告诉浏览器使用相应的编码来解析网页</h5>');
 
     // 对于每一个请求,服务器必须结束响应,否则客服端(浏览器) 会一直等待服务器响应结束.
     // res.end()
