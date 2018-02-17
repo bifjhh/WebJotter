@@ -1,10 +1,10 @@
 /.git
 /.idea
 /*node_modules
+*node_modules
 *.psd
 *.project
 *bantuH5.pxcp
+/*.gitignore
 *.gitignore
 *.vscode
-/node/itcast/day02/03-Apache/*node_modules
-/node/itcast/day02/04-url就是一个标识/*node_modules
