@@ -48,7 +48,7 @@
                             <% for (var i = 0; i < list.length; i++) {%>
                                 <tr class="athing" id="13718752">
                                     <td align="right" valign="top" class="title">
-                                        <span class="rank">1.</span>
+                                        <span class="rank"><%= (i+1) %>.</span>
                                     </td>
                                     <td valign="top" class="votelinks">
                                         <center>
@@ -58,7 +58,7 @@
                                         </center>
                                     </td>
                                     <td class="title">
-                                        <a href="/details?id=<%= list[i].id %>">
+                                        <a href="/item?id=<%= list[i].id %>">
                                             <%= list[i].title %>
                                         </a>
                                         <span class="sitebit comhead"> (<a href="from?site=chromium.org"><span class="sitestr">chromium.org</span></a>)</span>

@@ -1,8 +1,8 @@
 {
-  "name": "05-hackernews",
+  "name": "02-underscore-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "02-underscore-demo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mime": "^2.2.0",
     "underscore": "^1.8.3"
   }
 }

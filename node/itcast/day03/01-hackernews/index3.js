@@ -2,8 +2,10 @@
 // 封装一个render()函数
 // 将render 函数挂在res对象上,可以通过res.render()来访问
 // 实现 get 方法添加新闻
-// 实现在原来 list 数组的基础上追加新闻
+// 实现在原来 list 数组的基础上追加新闻，而不是覆盖
 // 实现 post 方法添加新闻
+// 实现首页显示新闻列表
+// 实现显示新闻详情页
 
 // 1. 加载 http 模块
 var http = require('http');
@@ -12,6 +14,7 @@ var path = require('path');
 var mime = require('mime');
 var url = require('url');
 var querystring = require('querystring');
+var _ = require('underscore');
 
 // 封装函数,用来处理不同页面的数据读取和返回
 
@@ -19,23 +22,30 @@ var querystring = require('querystring');
 // 2. 创建服务
 http.createServer((req, res) => {
 	// 要在这里写大量的代码(逻辑)
-
 	// 为res 对象添加一个 render() 函数, 方便后续使用
-	res.render = (filename) => {
+	// 因为现在要渲染的 index.html 文件中需要使用模板数据,所以在 render 对象中添加第二个参数 tplData
+	// 第二个参数的作用就是用来传递 html 页面中要使用的模板数据
+
+	res.render = (filename, tplData) => {
 		fs.readFile(filename, (err, data) => {
 			if (err) {
 				res.writeHead(404, 'Not Found', {
 					'Content-Type': 'text/html;charset=utf-8'
 				});
 				res.end('404,Page Not Found');
-
 				return;
-			} else {
-				// 通过第npm三方模块 mime 来判断不同的资源对应的Content-Type类型 
-				res.setHeader('Content-Type', mime.getType(filename));
-				// 如果找到了文件,直接返回该文件
-				res.end(data);
 			}
+			// 通过第npm三方模块 mime 来判断不同的资源对应的Content-Type类型 
+			res.setHeader('Content-Type', mime.getType(filename));
+			// 如果找到了文件,直接返回该文件
+
+			// 如果用户传递了 模板数据,则表示要进行模板替换			
+			if (tplData) {
+				// 如果用户传递了 模板数据,则表示要进行模板替换 使用 underscore 的 template 方法进行替换
+				data = _.template(data.toString('utf8'))(tplData);
+			}
+			res.end(data);
+
 		})
 	};
 
@@ -53,25 +63,44 @@ http.createServer((req, res) => {
 	var urlObj = url.parse(req.url, true);
 	// console.log(urlObj);
 
-
-
 	//先根据用户请求的路径(路由),将对应的HTML页面显示出来
 	if (req.url === '/' || req.url === '/index' && req.method === 'get') {
 		// 1. 读取 data.json 中的数据,并转换为 list 数组
 		fs.readFile(path.join(__dirname, 'data', 'data.json'), 'utf8', (err, data) => {
 			if (err && err.code !== 'ENOENT') throw err;
-			var list = JSON.parse(data||'[]');
+			var list_news = JSON.parse(data || '[]');
+
+			// 2. 在服务器端使用模板引擎,将 list 数组中的数据和index.html 文件中的内容组合起来,返回给客户端渲染
+			// 2.1 读取 index.html 文件
+			res.render(path.join(__dirname, 'views', 'index.html'), {"list": list_news});
 		});
 
-		// 2. 在服务器端使用模板引擎,将 list 数组中的数据和index.html 文件中的内容组合起来,返回给客户端渲染
-		// 2.1 读取 index.html 文件
-		res.render(path.join(__dirname, 'views', 'index.html'));
 	} else if (req.url === '/submit' && req.method === 'get') {
 		// 1. 读取submit.html 并返回
 		res.render(path.join(__dirname, 'views', 'submit.html'));
-	} else if (req.url === '/item' && req.method === 'get') {
+	} else if (urlObj.pathname === '/item' && req.method === 'get') {
 		// 1. 读取details.html 并返回
-		res.render(path.join(__dirname, 'views', 'details.html'));
+		// 1. 读取 data.json 中的数据,并转换为 list 数组
+		fs.readFile(path.join(__dirname, 'data', 'data.json'), 'utf8', (err, data) => {
+			if (err && err.code !== 'ENOENT') throw err;
+			var list_news = JSON.parse(data || '[]');
+			
+			var item = list_news.filter(function (item) {
+				// urlObj.query.id 直接获取用户请求的新闻 id
+				// 使用 filter() 过滤器方法筛选对应的 id 的新闻
+				return item.id.toString() === urlObj.query.id;
+			});
+			// 2. 在服务器端使用模板引擎,将 list 数组中的数据和index.html 文件中的内容组合起来,返回给客户端渲染
+				// 2.1 读取 index.html 文件
+				// 如果查询到了用户请求的 id 的新闻,则返回
+			if (item.length>0) { 
+				res.render(path.join(__dirname, 'views', 'details.html'), { "item": item[0] }); 
+			}else{
+				// 如果查询不到,则返回错误信息
+				res.end('No This Item')
+			}
+
+		});
 	} else if (req.url.startsWith('/resources') && req.method === 'get') {
 		res.render(path.join(__dirname, req.url));
 	} else if (req.url.startsWith('/add') && req.method === 'get') {
@@ -132,10 +161,15 @@ http.createServer((req, res) => {
 				// 在这个事件中,只要把 array 中的所有数据汇总起来就好	 
 				// Buffer.concat() 方法,将多个 Buffer 数据合成一个 Buffer
 				var postIofo = Buffer.concat(array);
+
 				// 把获取到的 Buffer 对象转换为一个字符串
 				postIofo = postIofo.toString('utf8');
+
 				// 把 post 请求的查询字符串转换为一个 json 对象  使用querystring.parse() 方法
 				postIofo = querystring.parse(postIofo);
+
+				// 在把 新闻 添加到 list 之前，为新闻增加一个 id 属性
+				postIofo.id = list.length;
 
 				// 3. 向 list 数组中 push 一条新闻
 				list.push(postIofo);
