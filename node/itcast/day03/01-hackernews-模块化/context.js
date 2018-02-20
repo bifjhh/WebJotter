@@ -8,6 +8,7 @@
  * 3. 为 res 增加一个 render 函数
  */
 
+const fs = require('fs');
 const url = require('url');
 const mime = require('mime');
 const _ = require('underscore');
@@ -18,8 +19,8 @@ module.exports = (req, res) => {
   var urlObj = url.parse(req.url.toLowerCase(), true);
   req.query = urlObj.query;
   // 2. 为 req 增加 pathname 属性
-  req.pathname = urlobj.pathname;
-
+  req.pathname = urlObj.pathname;
+  req.method = req.method.toLowerCase();
   // 3. 为 res 增加 render 函数 
   res.render = (filename, tplData) => {
     fs.readFile(filename, (err, data) => {

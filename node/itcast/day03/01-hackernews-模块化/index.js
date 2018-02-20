@@ -6,46 +6,20 @@
 // 模块六(配置模块): 负责保存各种项目中用到的配置信息
 
 // 1. 加载 http 模块
-var http = require('http');
-var fs = require('fs');
-var path = require('path');
-var mime = require('mime');
-var url = require('url');
-var querystring = require('querystring');
-var _ = require('underscore');
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const mime = require('mime');
+const url = require('url');
+const querystring = require('querystring');
+const _ = require('underscore');
 
-// 封装函数,用来处理不同页面的数据读取和返回
-
+var context = require('./context.js');
 
 // 2. 创建服务
 http.createServer((req, res) => {
-	// 要在这里写大量的代码(逻辑)
-	// 为res 对象添加一个 render() 函数, 方便后续使用
-	// 因为现在要渲染的 index.html 文件中需要使用模板数据,所以在 render 对象中添加第二个参数 tplData
-	// 第二个参数的作用就是用来传递 html 页面中要使用的模板数据
-	res.render = (filename, tplData) => {
-		fs.readFile(filename, (err, data) => {
-			if (err) {
-				res.writeHead(404, 'Not Found', {
-					'Content-Type': 'text/html;charset=utf-8'
-				});
-				res.end('404,Page Not Found');
-				return;
-			}
-			// 通过第npm三方模块 mime 来判断不同的资源对应的Content-Type类型 
-			res.setHeader('Content-Type', mime.getType(filename));
-			// 如果找到了文件,直接返回该文件
-
-			// 如果用户传递了 模板数据,则表示要进行模板替换			
-			if (tplData) {
-				// 如果用户传递了 模板数据,则表示要进行模板替换 使用 underscore 的 template 方法进行替换
-				data = _.template(data.toString('utf8'))(tplData);
-			}
-			res.end(data);
-
-		})
-	};
-
+	// 调用 context.js 模块的返回值(函数), 并将 req 和 res 对象传递给 context.js 模块
+	context(req,res);
 	// 设计路由
 	// 当用户请求 / 或 index 时, 显示新闻列表页面 --get请求
 	// 当用户请求 /item 时, 显示新闻详情页面 --get请求
@@ -53,12 +27,7 @@ http.createServer((req, res) => {
 	// 当用户请求 /add 时, 将用户提交的新闻保存到data.json文件中 --get请求 
 	// 当用户请求 /add 时, 将用户提交的新闻保存到data.json文件中 --post请求  
 
-	// 使用toLowerCase() 方法,将用户请求的url 和 method 转换为小写字母
-	req.url = req.url.toLowerCase();
-	req.method = req.method.toLowerCase();
-	// 通过 url 模块,调用 url.parse() 方法,解析用户请求的url(req.url)
-	var urlObj = url.parse(req.url, true);
-
+	
 	//先根据用户请求的路径(路由),将对应的HTML页面显示出来
 	if (req.url === '/' || req.url === '/index' && req.method === 'get') {
 		// 1. 调用 getInfo() 方法读取 读取 data.json 中的数据,并转换为 list 数组
@@ -75,14 +44,14 @@ http.createServer((req, res) => {
 				"list": info
 			});
 		});
-	} else if (urlObj.pathname === '/item' && req.method === 'get') {
+	} else if (req.pathname === '/item' && req.method === 'get') {
 		// 1. 读取details.html 并返回
 		// 1. 调用 getInfo() 方法读取 data.json 中的数据,并转换为 list 数组
 		getInfo(function (info) {
 			var item = info.filter(function (item) {
-				// urlObj.query.id 直接获取用户请求的新闻 id
+				// req.query.id 直接获取用户请求的新闻 id
 				// 使用 filter() 过滤器方法筛选对应的 id 的新闻
-				return item.id.toString() === urlObj.query.id;
+				return item.id.toString() === req.query.id;
 			});
 			// 2. 在服务器端使用模板引擎,将 list 数组中的数据和index.html 文件中的内容组合起来,返回给客户端渲染
 			// 2.1 读取 index.html 文件
@@ -103,10 +72,10 @@ http.createServer((req, res) => {
 		// 要获取用户 get 提交过来的数据,需要用到 url 模块(这个模块是node.js内置模块  不是第三方模块)
 		// 既然是 get 提交过来的数据,可以通过req.url来获取,但是并不方便(因为要自己截取字符串,然后获取想要的数据)
 		// 1. 获取用户 get 提交过来的新闻数据
-		// urlObj.query.title // urlObj.query.url // urlObj.query.text
+		// req.query.title // req.query.url // req.query.text
 		getInfo(function (info) {
-			urlObj.query.id = info.length;
-			info.push(urlObj.query); // 将用户提交的信息存放到数组当中
+			req.query.id = info.length;
+			info.push(req.query); // 将用户提交的信息存放到数组当中
 			// 2. 把用户提交的新闻数据保存到 data.json 文件中
 			// 调用 setInfo() 方法,把list数组中的数据写入到data.json文件中;
 			setInfo(JSON.stringify(info), function () {
