@@ -1,4 +1,4 @@
-// 封装
+// 封装配置信息
 
 const path = require('path');
 
