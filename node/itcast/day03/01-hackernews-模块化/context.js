@@ -1,5 +1,11 @@
+// 该模块负责对 req 和 res 对象进行扩展
 /**
- * 该模块负责对 req 和 res 对象进行扩展
+ * 文档封装步骤
+ * 1. 该模块中要封装什么代码?
+ * 2. 这些代码有用到外部的数据吗? 如果用到了,是否需要通过 参数 将这些数据传递到当前模块中?
+ * 3. 当前模块对外需要暴露的东西 (module.exports的值)
+ */
+/**
  * 希望的功能
  * 1. 为 req 增加一个 query 属性,该属性中保存的就是用户 get 请求提交过来的数据
  * - req.query
@@ -13,7 +19,10 @@ const url = require('url');
 const mime = require('mime');
 const _ = require('underscore');
 
-// 让当前模块对外暴露一个函数,通过这个函数将 index.js 中的 req 和 res 对象传递到 context.js 这个模块中
+/**
+ * @param {any} req 
+ * @param {any} res 
+ */
 module.exports = (req, res) => {
   // 1. 为 req 增加 query 属性
   var urlObj = url.parse(req.url.toLowerCase(), true);
@@ -22,6 +31,7 @@ module.exports = (req, res) => {
   req.pathname = urlObj.pathname;
   req.method = req.method.toLowerCase();
   // 3. 为 res 增加 render 函数 
+  
   res.render = (filename, tplData) => {
     fs.readFile(filename, (err, data) => {
       if (err) {
