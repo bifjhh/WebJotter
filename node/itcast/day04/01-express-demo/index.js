@@ -52,10 +52,25 @@ var app = express();
 //   res.send('Hello express 使用send!');
 // });
 
+// 通过 正则表达式 注册路由
 app.get(/^\/index(\/.+)$/i, (req, res) => {
   res.send('Hello express 使用send!');
 });
 
+
+// 通过 req.params 获取路由中的参数
+app.get('/news/:year/:month/:day', function (req, res) {
+  // console.log(req.params);
+  res.send(req.params);
+  // 返回的是一个 json 格式的对象
+  /* http://localhost:8888/news/2018/02/22
+    {
+      year: "xxx",
+      month: "xxx",
+      day: "xxx",
+    }
+  */
+});
 
 // 注册一个 请求 / 的路由
 app.get('/', (req, res) => {
