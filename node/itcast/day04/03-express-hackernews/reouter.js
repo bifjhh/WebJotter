@@ -8,6 +8,7 @@
 var express = require('express');
 var router = express.Router();
 var handler = require('./handler.js');
+var path = require('path');
 
 // 2. 通过 router 对象设置(挂在)路由
 router.get('/', handler.index);
@@ -16,6 +17,9 @@ router.get('/submit', handler.submit);
 router.get('/item', handler.item);
 router.get('/add', handler.add);
 router.post('/add', handler.add);
+
+// 实现对 resource 静态资源托管
+router.use('/resources', express.static(path.join(__dirname,'resources')));
 
 // 3. 返回一个 router 对象
 module.exports = router;
