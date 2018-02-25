@@ -4,6 +4,9 @@
 
 // 1. 加载 https 模块
 const https = require('https');
+const cheerio = require('cheerio');
+const fs = require('fs');
+const path = require('path');
 
 // 2. 构建 options (构建请求信息: 请求报文)
 
@@ -33,7 +36,32 @@ var req = https.request(options,(res)=>{
   res.on('end',()=>{
     buffer = Buffer.concat(buffer);
     var html = buffer.toString('utf8');
-    console.log(html);
+    // 通过 cheerio 模块加载 html 代码
+    var $ = cheerio.load(html);
+
+    var jokes = [];
+    // 通过选择器 选择需要的元素
+    // 1. 选取所有需要的内容(段子)的div
+    $('div.article.block.untagged.mb15').each((index,element)=>{
+      // 作者名称
+      var author = $(element).find('h2').text();
+      // console.log(author);
+      var content = $(element).find('div.content span').text();
+      // console.log(content);
+
+      // 把每个数据都放到数组里面
+      jokes.push({
+        author:author,
+        content:content
+      });
+    });
+    // 将 jokes 写到一个文件中
+    fs.writeFile(path.join(__dirname,'jokes.json'),JSON.stringify(jokes),(err)=>{
+      if(err)throw err;
+      console.log('写入完成');
+    })
+
+
   });
 });
 
