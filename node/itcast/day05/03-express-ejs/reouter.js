@@ -11,12 +11,15 @@ var handler = require('./handler.js');
 var path = require('path');
 
 // 2. 通过 router 对象设置(挂在)路由
+
+// 首页新闻列表
 router.get('/', handler.index);
 router.get('/index', handler.index);
-router.get('/submit', handler.submit);
+// 新闻详情页
 router.get('/item', handler.item);
-router.get('/add', handler.add);
-router.post('/add', handler.add);
+router.get('/submit', handler.submit);
+router.get('/add', handler.addGet);
+router.post('/add', handler.addPost);
 
 // 实现对 resource 静态资源托管
 router.use('/resources', express.static(path.join(__dirname,'resources')));

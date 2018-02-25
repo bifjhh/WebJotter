@@ -6,6 +6,8 @@ var express = require('express');
 var config = require('./config.js');
 var reouter = require('./reouter.js');
 var path = require('path');
+// 加载 body-parser 模块
+var bodyParser = require('body-parser');
 
 // 2. 创建 app 对象
 var app = express();
@@ -36,6 +38,11 @@ app.engine('html',require('ejs').renderFile)
 // 3. 使用刚才自己创建的这个模板引擎
 app.set('view engine', 'html');
 
+// 配置 body-parser 插件(挂载 body-parser 中间件)
+// 一定要在正式处理请求之前设置 body-parser
+// 如果参数 extended:false 表示在 bodyparser 内部使用 node.js 内置的 querystring 模块把用户 post 提交的查询字符串转换为 json 对象
+// 如果参数 extended:true 表示在 bodyparser 内部使用 第三方的 qs 模块 把用户 post 提交的查询字符串转换为 json 对象
+app.use(bodyParser.urlencoded({extended:false}));
 
 // 3. 注册路由
 // app.use('/', reouter); == // app.use(reouter);
