@@ -1,0 +1,32 @@
+.float{
+    // display: none;
+    width: 156/75rem;
+    height: 104/75rem;
+    position: fixed;
+    background: url('../img/up.png') no-repeat center;
+    background-size: 100% 100%;
+    bottom: -104/4/75rem;
+    left: 50%;
+    opacity: .8;
+    transform: translateX(-50%) ;
+    animation: up-and-down 1.5s linear infinite;
+}
+
+
+@keyframes up-and-down {
+  0% {
+    transform:translateX(-50%) translateY(0px) scale(0.5, 0.5);
+  }
+  25% {
+    transform:translateX(-50%) translateY(-10px) scale(0.5, 0.5);
+  }
+  50% {
+    transform:translateX(-50%) translateY(-20px) scale(0.5, 0.5);
+  }
+  75% {
+    transform:translateX(-50%) translateY(-10px) scale(0.5, 0.5);
+  }
+  100% {
+    transform:translateX(-50%) translateY(0px) scale(0.5, 0.5);
+  }
+}

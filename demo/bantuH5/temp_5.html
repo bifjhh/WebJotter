@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>名片详情</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+    <script src="lib/zepto.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./lib/zepto.fullpage.js"></script>
+    <!-- <script src="lib/js.fullpage.js" type="text/javascript" charset="utf-8"></script> -->
+    <!--<link rel="stylesheet" type="text/css" href="css/animate.css"/>-->
+    <script type="text/javascript" charset="utf-8">
+        ! function (e, t) {
+            function n() {
+                t.body ? t.body.style.fontSize = 12 * o + "px" : t.addEventListener("DOMContentLoaded", n)
+            }
+
+            function d() {
+                var e = i.clientWidth / 10;
+                i.style.fontSize = e + "px"
+            }
+            var i = t.documentElement,
+                o = e.devicePixelRatio || 1;
+            if (n(), d(), e.addEventListener("resize", d), e.addEventListener("pageshow", function (e) {
+                    e.persisted && d()
+                }), o >= 2) {
+                var a = t.createElement("body"),
+                    s = t.createElement("div");
+                s.style.border = ".5px solid transparent", a.appendChild(s), i.appendChild(a), 1 === s.offsetHeight &&
+                    i.classList.add("hairlines"), i.removeChild(a)
+            }
+        }(window, document);
+    </script>
+    <link rel="stylesheet" type="text/css" href="./lib/zepto.fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="css/float.css" />
+    <link rel="stylesheet" type="text/css" href="css/temp_2.css" />
+    <script src="./lib/infoCode.js"></script>
+
+</head>
+
+<body>
+    <div id="dowebok" class="wp">
+        <div class="wp-inner">
+            <!-- first 第一屏 首页 -->
+            <div class="page first ">
+                <div class="first-bg"></div>
+                <div class="first-bg1"></div>
+                <strong class="card">
+                    <span class="info-name" id="name"></span>
+                </strong>
+            </div>
+            <!-- second 第二屏 个人信息展示 -->
+            <div class="page second ">
+                <div class="second-bg"></div>
+                <div class="second-t-l"></div>
+                <div class="second-t-r">
+                    <div class="second-t-r-box">
+                        <img class="second-t-r-box-a" id="deptpic">
+                    </div>
+                </div>
+                <div class="second-info2">
+                    <ul>
+                        <li>姓名：
+                            <span class="info-name" id="namei"> </span>
+                        </li>
+                        <li>职位：
+                            <span class="info-post" id="post"> </span>
+                        </li>
+                        <li>公司：
+                            <span class="info-units" id="company"> </span>
+                        </li>
+                        <li>手机：
+                            <span class="info-phone" id="mobile"> </span>
+                        </li>
+                        <li>邮箱：
+                            <span class="info-mail" id="email"> </span>
+                        </li>
+                        <li>固话：
+                            <span class="info-tel" id="tal"> </span>
+                        </li>
+                        <li>网址：
+                            <span class="info-url" id="url"> </span>
+                        </li>
+                        <li>地址：
+                            <span class="info-site" id="site"> </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- third 第三屏 公司简介 -->
+            <div class="page third">
+                <div class="third-bg"></div>
+                <div class="third-info">
+                    <ul>
+                        <li>公司简介：
+                            <p id="intro" class="info-intro"></p>
+                        </li>
+                        <!-- <li>经营范围：<p id="scope" class="info-scope">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- fourth 第四屏 二维码展示 -->
+            <div class="page fourth">
+                <div class="fourth-t">
+                </div>
+                <div class="fourth-b"></div>
+                <div class="fourth-c"></div>
+                <!--<div class="fourth-d"></div>-->
+                    <div class="fourth-code">
+                        <img id="code_sc" src="https://www.bantucard.com/bantu/images/bantuCode.png">
+                    </div>
+                <div class="fourth-sandbeach " id="click"></div>
+                <div class="copyright"></div>
+            </div>
+        </div>
+        <div id="up" class="float"></div>
+    </div>
+</body>
+<script>
+   $('.wp-inner').fullpage({
+        drag: false,
+    });
+    $('#up').on('click', function (e) {
+        e.preventDefault();
+        $.fn.fullpage.moveNext(true);
+    });
+</script>
+
+</html>

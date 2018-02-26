@@ -1,0 +1,560 @@
+/* 样式的初始化 */
+body,
+dl,
+dd,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+figure,
+hr,
+menu,
+dir,
+thead,
+tbody,
+tfoot,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style-type: none;
+  list-style-image: none;
+}
+a {
+  text-decoration: none;
+}
+a:active {
+  background-color: transparent;
+}
+a:active,
+a:hover {
+  outline: 0 none;
+}
+a:focus {
+  outline: 1px dotted;
+}
+body {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.wp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.wp-inner {
+  overflow: hidden;
+}
+/* 第一页 首页效果 */
+.first {
+  position: relative;
+}
+.first .first-bg {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n10/top_bg.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.first .first-bg1 {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n10/bottom_bg.png") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.first .card {
+  position: absolute;
+  width: 285px;
+  font-family: FZSHHJW--GB1-0;
+  font-size: 0.70666667rem;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 0.93333333rem;
+  letter-spacing: -1px;
+  color: #142142;
+  left: 1.13333333rem;
+  bottom: 8.48rem;
+  opacity: 0;
+}
+/* 第一页触发后效果 cur */
+.cur .first-bg {
+  transition: all 3s cubic-bezier(0, 0, 0, 0.99);
+  top: 0;
+}
+.cur .first-bg1 {
+  transition: all 3s cubic-bezier(0, 0, 0, 0.99);
+  bottom: 0;
+}
+.cur .card {
+  transition: all 3.2s 1s ease-out;
+  opacity: 1;
+}
+/* 第二屏效果 */
+.second,
+.third {
+  position: relative;
+  overflow: hidden;
+}
+.second .second-bg,
+.third .second-bg,
+.second .third-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n11/bgimg.jpg") no-repeat center;
+  background-size: 100% 100%;
+  opacity: 0;
+}
+.second .second-t-l,
+.third .second-t-l,
+.second .third-t-l,
+.third .third-t-l {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n11/bg.png") no-repeat center;
+  background-size: 100% 100%;
+  opacity: 0;
+  transform:scaleX(0);  
+}
+.second .second-t-r,
+.third .second-t-r,
+.second .third-t-r,
+.third .third-t-r {
+    position: absolute;
+    width: 100%;
+   height: 5.26rem;
+    top: 1.06666667rem;
+	text-align: center;
+}
+.second-t-r-box{
+	margin: 0 auto;
+    width: 7.2rem;
+    height: 5.26rem;
+    background: url(../img/n11/head.png) no-repeat center;
+    background-size: 100% 100%;
+    text-align: center;
+    opacity: 0;
+}
+.second-t-r-box-a{
+	width: 2.6rem;
+    height: 2.6rem;
+    background-color: #FFFFFF;
+transform: translate(-50%,-50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.second .second-b-l,
+.third .second-b-l,
+.second .third-b-l,
+.third .third-b-l {
+  position: absolute;
+  width: 4.70666667rem;
+  height: 3.49333333rem;
+  left: -4.70666667rem;
+  bottom: 0;
+  background: url("../img/n01/bg-b-l.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.second .second-b-r,
+.third .second-b-r,
+.second .third-b-r,
+.third .third-b-r {
+  position: absolute;
+  width: 7.84rem;
+  height: 3.89333333rem;
+  bottom: -3.89333333rem;
+  right: 0;
+  background: url("../img/n01/bg-b-r.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.second .second-info,
+.third .second-info,
+.second .third-info{
+     box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    bottom: -0.5rem;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    font-family: FZSHHJW--GB1-0;
+    font-size: 0.42666667rem;
+    font-weight: 600;
+    font-stretch: normal;
+    line-height: 0.93333333rem;
+    letter-spacing: 0px;
+    color: #fff;
+    background: url(../img/n11/body.png) no-repeat center;
+    background-size: 100% 100%;
+    opacity: 0;
+  /* 信息列表效果 */
+}
+.second .second-info .portrait,
+.third .second-info .portrait,
+.second .third-info .portrait,
+.third .third-info .portrait {
+  position: absolute;
+  width: 2.32rem;
+  height: 2.32rem;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  border: 3px solid #142142;
+  border-radius: 5px;
+}
+.third-info{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	background: url("../img/n12/bg-shaod.png") no-repeat center;
+	background-size: 100% 100%;
+}
+.second .second-info ul,
+.third .second-info ul,
+.second .third-info ul,
+.third .third-info ul {
+          position: absolute;
+    height: 0;
+    width: 7.8rem;
+    overflow: hidden;
+    left: 50%;
+    text-align-last: left;
+    transform: translateX(-50%);
+    top: 1rem;
+    color: #fff;
+}
+.second-info2{
+   position: absolute;
+    height: 0;
+    width: 7.8rem;
+    overflow: hidden;
+    left: 64%;
+    text-align-last: left;
+    transform: translateX(-50%);
+    top: 8rem;
+    color: #fff;
+    font-size: 0.48rem;
+}
+/*   */
+.second .second-info ul li,
+.third .second-info ul li,
+.second .third-info ul li,
+.third .third-info ul li {
+  position: relative;
+  overflow: hidden;
+}
+.second .second-info ul li span,
+.third .second-info ul li span,
+.second .third-info ul li span,
+.third .third-info ul li span {
+  font-weight: 400;
+  opacity: 0;
+}
+@keyframes rotate-l {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(3deg);
+  }
+  66% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(3deg);
+  }
+}
+.info-intro,.info-scope{
+        padding: 0 0.267rem;
+    width: 100%;
+    height: 7.067rem;
+    overflow: hidden;
+    line-height: 0.567rem;
+    font-size: 0.513rem;
+    text-indent: 1rem;
+}
+/* 第三屏效果 */
+.third-bg{
+	position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n12/bg.jpg") no-repeat center;
+  background-size: 100% 100%;
+  opacity: 0;
+}
+/* 第二屏触发后效果 cur */
+.cur .second-bg,
+.cur .third-bg {
+  transition: all 1s cubic-bezier(0.4, 0, 1, 0.99);
+  opacity: 1;
+}
+.cur .second-info{
+  
+  transition: all 1s cubic-bezier(0, 0, 0.29, 1.04) 1.5s;
+  opacity: 1;
+}
+.cur .third-t-l {
+  transition: all 0.5s cubic-bezier(0, 0, 0.29, 1.04);
+  opacity: 1;
+}
+.cur .second-t-l{
+	opacity: 1;
+	transform-origin:50% 50%;
+	transform:scale(1);  
+	transition: all 0.5s cubic-bezier(0, 0, 0.29, 1.04);
+	
+}
+.cur .second-t-r-box{
+  transition: all 1s cubic-bezier(0, 0, 0.29, 1.04) 1s;
+  opacity: 1;
+}
+.cur .second-t-r,
+.cur .third-t-r {
+  /*right: -0.26666667rem;*/
+  /*transform-origin: 100% 80%;*/
+  transition: all 1.2s 0.5s cubic-bezier(0, 0, 0.29, 1.04);
+  /*animation: rotate-l 4s 1.7s ease-out infinite alternate;*/
+}
+.cur .second-b-l,
+.cur .third-b-l {
+  left: -0.42666667rem;
+  bottom: -0.33333333rem;
+  transform-origin: 0% 100%;
+  transition: left 1.2s 0.5s cubic-bezier(0, 0, 0.29, 1.04);
+  animation: rotate-l 4s 1.7s ease-out infinite alternate;
+}
+.cur .second-b-r,
+.cur .third-b-r {
+  transition: all 0.3s 1s cubic-bezier(0, 0, 0.29, 1.04);
+  bottom: 0;
+}
+.cur .second-info .portrait {
+  transition: all 3s 2s cubic-bezier(0, 0, 0.29, 1.04);
+  opacity: 1;
+}
+.cur .second-info ul {
+  transition: all 4s ease-out 2s;
+  height: 7.33333333rem;
+}
+.cur .second-info ul li span {
+  opacity: 1;
+}
+.cur .second-info ul .info-name {
+  transition: all 4s 1s ease-out 1.2s;
+}
+.cur .second-info ul .info-post {
+  transition: all 5s 1s ease-out 1.2s;
+}
+.cur .second-info ul .info-units {
+  transition: all 6.5s 1s ease-out 1.2s;
+}
+.cur .second-info ul .info-phone {
+  transition: all 7s 1s ease-out 1.2s;
+}
+.cur .second-info ul .info-mail {
+  transition: all 8.5s 1s ease-out 1.2s;
+}
+.cur .second-info ul .info-tel {
+  transition: all 9s 1s ease-out 1.2s;
+}
+.cur .second-info ul .info-url {
+  transition: all 10.5s 1s ease-out 1.2s;
+}
+.cur .second-info ul .info-site {
+  transition: all 11s 1s ease-out 1.2s;
+}
+/* 第三屏触发后效果 */
+.cur .third-info ul {
+  transition: all 8s ease-out;
+  height: 7.33333333rem;
+}
+.cur .second-info2 {
+  transition: all 8s ease-out;
+  height: 7.33333333rem;
+}
+.cur .third-info ul li span {
+  opacity: 1;
+}
+.cur .third-info ul li:nth-of-type(2) {
+      margin-top: -0.2em;
+}
+.cur .third-info ul .info-intro {
+  transition: all 6s 1s ease-out;
+}
+.cur .third-info ul .info-scope {
+  transition: all 8s 1s ease-out;
+}
+/* 第四屏效果 */
+.fourth {
+  position: relative;
+  overflow: hidden;
+}
+.fourth .fourth-t {
+  width: 100%;
+  height: 100%;
+  background: url("../img/n13/bg.jpg") no-repeat center;
+  background-size: 100% 100%;
+}
+.fourth .fourth-b {
+    position: absolute;
+    top: 3.5rem;
+    left: 0rem;
+    width: 100%;
+    height: 6.3rem;
+    background: url("../img/n13/top.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.fourth  .fourth-c{
+	position: absolute;
+	top: 3.5rem;
+    left: 0rem;
+    width: 100%;
+    height: 6.3rem;
+    background: url("../img/n13/top.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.fourth  .fourth-d{
+	position: absolute;
+	top: 3.5rem;
+    left: 0rem;
+    width: 100%;
+    height: 6.3rem;
+    background: url("../img/n13/top.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.fourth .fourth-code {
+position: absolute;
+    width: 5.54rem;
+    height: 5.54rem;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(../img/n13/code.png) no-repeat center;
+    background-size: 100% 100%;
+    opacity: 0;
+}
+.fourth-code img{
+	    width: 5.2rem;
+    height: 5.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+.fourth-sandbeach{
+	width: 100%;
+	height: 5.85rem;
+	position: absolute;
+	bottom: 0;
+	background: url("../img/n13/sandbeach.png") no-repeat center;
+	background-size: 100% 100%;
+	opacity: 0;
+}
+/* 第四屏触发后效果 cur */
+.cur .fourth-b{
+  transition: all 2s ease-in-out;
+  transform-origin: 50% 50%;
+  animation: translate-l 3s 2s ease-out infinite;
+  animation-direction: initial;
+}
+.cur .fourth-c{  
+  transition: all 2s ease-in-out;
+  transform-origin: 50% 50%;
+  animation: translate-la 5s 2s ease-out infinite;
+  animation-direction: initial;
+}
+.cur .fourth-code, .cur .fourth-sandbeach {
+  transition: all 1.5s 2s ease-in-out;
+  opacity: 1;
+}
+.copyright{
+  width: 4.667rem;
+  height: 0.667rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: url("../img/copyright_black.png") no-repeat center;
+  -webkit-background-size: 4.667rem 0.667rem;
+  background-size: 4.667rem 0.667rem;
+  bottom: 0.267rem;
+  opacity: 0;
+
+}
+.cur .copyright{
+  opacity: 1;
+  transition: all 1.5s  ease-in-out 1s;
+}
+@keyframes translate-l {
+  from {
+    top: 3.5rem;
+    /*opacity: 1;*/
+  }
+  /*33% {
+ 	top: 4.5rem;;
+  }
+  66% {
+   top: 6rem;;
+  }*/
+  to {
+    top: 8.69rem;
+    /*opacity: 0;*/
+  }
+  
+}
+@keyframes translate-la {
+  from {
+    top: 3.5rem;
+    /*opacity: 1;*/
+  }
+  /*33% {
+ 	top: 4.5rem;;
+  }
+  66% {
+   top: 6rem;;
+  }*/
+  to {
+    top: 5.69rem;
+    /*opacity: 0;*/
+  }
+  
+}
+.cur .current {
+  transition: all 1.5s 2s ease-in-out;
+  transform: scale(1.3);
+}

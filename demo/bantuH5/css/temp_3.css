@@ -1,0 +1,686 @@
+/* 样式的初始化 */
+body,
+dl,
+dd,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+figure,
+hr,
+menu,
+dir,
+thead,
+tbody,
+tfoot,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style-type: none;
+  list-style-image: none;
+}
+a {
+  text-decoration: none;
+}
+a:active {
+  background-color: transparent;
+}
+a:active,
+a:hover {
+  outline: 0 none;
+}
+a:focus {
+  outline: 1px dotted;
+}
+body {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.wp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.wp-inner {
+  overflow: hidden;
+}
+/* 第一页 首页效果 */
+.first {
+  position: relative;
+}
+.first .first-bg {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n20/bg.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.first .first-bg1 {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n20/bg_card.png") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.first_bg_font{
+    width: 9.973rem;
+    height: 5.7rem;
+    background: url(../img/n20/font_bg.png) no-repeat center;
+    -webkit-background-size: 100% 100%;
+    /*background-size: 100% 100%;*/
+    background-clip: text;
+    -webkit-background-clip: text;
+    position: absolute;
+    bottom: 2rem;
+    border: 1px solid transparent;
+    z-index: 10;
+}
+.card_name{
+    display: block;
+    width: 1rem;
+    font-family: FZSHHJW--GB1-0;
+    font-size: 0.80666667rem;
+    line-height: 30px;
+    margin-left: 292px;
+    color: transparent;
+    word-wrap: break-word;
+}
+.info-name{
+  width: 1.0rem;
+  height: 5.7rem;
+  margin-left: 276px;
+  color: transparent;
+}
+/* 第一页触发后效果 cur */
+.cur .first-bg {
+  transition: all 3s cubic-bezier(0, 0, 0, 0.99);
+  top: 0;
+}
+.cur .first-bg1 {
+  transition: all 3s cubic-bezier(0, 0, 0, 0.99);
+  bottom: 0;
+}
+.cur .card_name {
+  transition: all 3.2s 1s ease-out;
+  opacity: 1;
+}
+/* 第二屏效果 */
+.second,
+.third {
+  position: relative;
+  overflow: hidden;
+}
+.second .second-bg,
+.third .second-bg,
+.second .third-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n21/bg.png") no-repeat center;
+  background-size: 100% 100%;
+  opacity: 0;
+}
+.second-t-1{
+   position: absolute;
+  top:6.07rem;
+  right: 1.59rem;
+  width: 2.36rem;
+  height: 1.987rem;
+   background: url("../img/n21/01.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-2{
+   position: absolute;
+  width: 2.79rem;
+  height: 2.2rem;
+  left: 1.97rem;
+  top: 8.97rem;
+   background: url("../img/n21/02.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-3{
+   position: absolute;
+  width: 1.81rem;
+  height: 1.41rem;
+  right: 0.43rem;
+  top: 7.53rem;
+   background: url("../img/n21/03.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-4{
+   position: absolute;
+    width: 1.39rem;
+  height: 1.08rem;
+  left: 1.09rem;
+  top: 8.68rem;
+   background: url("../img/n21/04.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-5{
+   position: absolute;
+ width: 1.08rem;
+  height: 1.21rem;
+  left: 6.08rem;
+  top: 8.16rem;
+   background: url("../img/n21/05.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-6{
+   position: absolute;
+  width: 0.89rem;
+  height: 0.91rem;
+  left:3.85rem;
+  top: 7.85rem;
+   background: url("../img/n21/06.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-7{
+   position: absolute;
+  width: 0.67rem;
+  height: 1.08rem;
+  left: 2.8rem;
+    top: 4.7rem;
+   background: url("../img/n21/07.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-8{
+   position: absolute;
+width: 0.96rem;
+  height: 1.35rem;
+      left: 2.5rem;
+    top: 2.5rem;
+   background: url("../img/n21/08.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-9{
+   position: absolute;
+  width: 0.99rem;
+  height: 0.75rem;
+  left: 0.24rem;
+  top: 4.59rem;
+   background: url("../img/n21/09.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second-t-10{
+   position: absolute;
+  width: 1.387rem;
+  height: 1.867rem;
+  left: 3.947rem;
+  top: 3.947rem;
+   background: url("../img/n21/10.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%; 
+}
+.second .second-t-r{
+    position: absolute;
+    width: 2.067rem;
+   height: 2.067rem;
+    top: 1.06666667rem;
+    right: 1.333rem;
+    border: 0.133rem solid #142242;
+	text-align: center;
+}
+.second .second-b-l,
+.third .second-b-l,
+.second .third-b-l,
+.third .third-b-l {
+  position: absolute;
+  width: 4.70666667rem;
+  height: 3.49333333rem;
+  left: -4.70666667rem;
+  bottom: 0;
+  background: url("../img/n01/bg-b-l.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.second .second-b-r,
+.third .second-b-r,
+.second .third-b-r,
+.third .third-b-r {
+  position: absolute;
+  width: 7.84rem;
+  height: 3.89333333rem;
+  bottom: -3.89333333rem;
+  right: 0;
+  background: url("../img/n01/bg-b-r.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.second .second-info,
+.third .second-info,
+.second .third-info{
+     box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    bottom: -0.5rem;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    font-family: FZSHHJW--GB1-0;
+    font-size: 0.42666667rem;
+    font-weight: 600;
+    font-stretch: normal;
+    line-height: 0.93333333rem;
+    letter-spacing: 0px;
+    color: #fff;
+    background: url(../img/n11/body.png) no-repeat center;
+    background-size: 100% 100%;
+  /* 信息列表效果 */
+}
+.second .second-info .portrait,
+.third .second-info .portrait,
+.second .third-info .portrait,
+.third .third-info .portrait {
+  position: absolute;
+  width: 2.32rem;
+  height: 2.32rem;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  border: 3px solid #142142;
+  border-radius: 5px;
+}
+.third-info{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	background: url("../img/n12/bg-shaod.png") no-repeat center;
+	background-size: 100% 100%;
+}
+.myul-a{
+    position: absolute;
+    width: 7rem;
+    font-size: 0.413rem;
+    top: 3.9rem;
+    left: 3.0rem;
+    overflow: hidden;
+}
+.myul-b{
+        position: absolute;
+    font-size: 0.413rem;
+    width: 8rem;
+    bottom: 2.5rem;
+    left: 1.53rem;
+    overflow: hidden;
+}
+.cur .second-t-1,.cur .second-t-2,
+.cur .second-t-3,.cur .second-t-4,
+.cur .second-t-5,.cur .second-t-6,
+.cur .second-t-7,.cur .second-t-8,
+.cur .second-t-9,.cur .second-t-10,
+.cur .third-t-1,.cur  .third-t-2,
+.cur .third-t-3,.cur .third-t-4,.cur .third-t-5{
+  transition: all 5s;
+  animation: rotate-l 10s  linear 0s infinite ;
+}
+.myul-a  li {
+   transform: translateX(-6.667rem);
+}
+.myul-b  li {
+   transform: translateX(8.667rem);
+}
+@keyframes rotate-l {
+  0% {
+    transform: rotate(0deg);
+  }
+ /* 33% {
+    transform: rotate(90deg);
+  }
+  66% {
+    transform: rotate(270deg);
+  }*/
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* 第三屏效果 */
+.third-bg{
+	position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/n22/bg.png") no-repeat center;
+  background-size: 100% 100%;
+  opacity: 0;
+}
+.third-title{
+  font-size: 0.7rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-weight: 400;
+        width: 80%;
+}
+.info-intro{
+  width: 8.6rem;
+  padding-left: 0.5rem;
+  margin:0 auto;
+  font-size: 0.48rem;
+  height: 14.5rem;
+  overflow:hidden;
+  text-indent: 1rem;
+  opacity: 0;
+}
+.third-t-1{
+  position: absolute;
+  width: 1.79rem;
+  height: 2.19rem;
+  left: 0.96rem;
+  top: 5.24rem;
+   background: url("../img/n21/09.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%;
+    background: url("../img/n22/1.png") no-repeat center;
+    background-size: 100% 100%;
+       transform-origin:50% 50%; 
+}
+.third-t-2{
+  position: absolute;
+ width: 1.23rem;
+  height: 1.91rem;
+  left: 3.91rem;
+  top: 6.2rem;
+   background: url("../img/n21/09.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%;
+    background: url("../img/n22/2.png") no-repeat center;
+    background-size: 100% 100%;
+       transform-origin:50% 50%; 
+}
+.third-t-3{
+  position: absolute;
+  width: 1.72rem;
+  height: 1.19rem;
+  left:2.72rem;
+  top: 4.27rem;
+   background: url("../img/n21/09.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%;
+    background: url("../img/n22/3.png") no-repeat center;
+    background-size: 100% 100%;
+       transform-origin:50% 50%; 
+}
+.third-t-4{
+  position: absolute;
+  width: 1.21rem;
+  height: 1.61rem;
+  left:3.15rem;
+  top: 8.39rem;
+   background: url("../img/n21/09.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%;
+    background: url("../img/n22/4.png") no-repeat center;
+    background-size: 100% 100%;
+       transform-origin:50% 50%; 
+}
+.third-t-5{
+  position: absolute;
+  width: 1.23rem;
+  height: 1.63rem;
+  left: 0.37rem;
+  bottom:3.83rem;
+   background: url("../img/n21/09.png") no-repeat center;
+   background-size: 100% 100%;
+   transform-origin:50% 50%;
+    background: url("../img/n22/5.png") no-repeat center;
+    background-size: 100% 100%;
+       transform-origin:50% 50%; 
+}
+/* 第二屏触发后效果 cur */
+.cur .second-bg,
+.cur .third-bg {
+  transition: all 1s cubic-bezier(0.4, 0, 1, 0.99);
+  opacity: 1;
+}
+
+.cur .info-intro {
+  transition: all 5s cubic-bezier(0, 0, 0.29, 1.04);
+  opacity: 1;
+}
+
+.cur .second-t-r{
+  /*right: -0.26666667rem;*/
+  /*transform-origin: 100% 80%;*/
+  transition: all 1.2s 0.5s cubic-bezier(0, 0, 0.29, 1.04);
+  /*animation: rotate-l 4s 1.7s ease-out infinite alternate;*/
+}
+.cur .myul-a .info-name1 {
+  transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 0s;
+}
+.cur .myul-a .info-post {
+  transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 0.5s;
+}
+.cur .myul-a .info-units {
+  transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 1s;
+}
+.cur .myul-a .info-phone {
+  transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 1.5s;
+}
+.cur .myul-b .info-mail {
+   transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 0s;
+}
+.cur .myul-b .info-tel {
+   transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 0.5s;
+}
+.cur .myul-b .info-url {
+   transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 1s;
+}
+.cur .myul-b .info-site {
+   transform: translateX(0);
+  transition: all 1s cubic-bezier(0.24, 0.65, 0.88, 1.26) 1.5s;
+}
+/* 第三屏触发后效果 */
+.cur .third-info ul {
+  transition: all 8s ease-out;
+  height: 7.33333333rem;
+}
+.cur .third-info ul li span {
+  opacity: 1;
+}
+.cur .third-info ul li:nth-of-type(2) {
+  margin-top: 1em;
+}
+.cur .third-info ul .info-intro {
+  transition: all 6s 1s ease-out;
+}
+.cur .third-info ul .info-scope {
+  transition: all 8s 1s ease-out;
+}
+/* 第四屏效果 */
+.fourth {
+  position: relative;
+  overflow: hidden;
+}
+.fourth .fourth-a {
+  position: absolute;
+  width: 20.0rem;
+  height: 8.0rem;
+  left: -4.0rem;
+  top: 0;
+  background: url("../img/n23/top.png") no-repeat center;
+  background-size: 100% 100%;
+}
+.fourth .fourth-b {
+    position: absolute;
+   width: 20.0rem;
+  height: 8.0rem;
+  left:-2.6rem;
+ bottom: 0;
+    background: url("../img/n23/bottom.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.fourth  .fourth-c{
+	 position: absolute;
+    width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+    background: url("../img/n23/yellow_bg.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.fourth  .fourth-d{
+	 position: absolute;
+    width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+    background: url("../img/n23/word-1.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.fourth  .fourth-e{
+   position: absolute;
+    width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+    background: url("../img/n23/word-2.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.fourth .fourth-code {
+position: absolute;
+    width: 5.0rem;
+    height: 5rem;
+    top: 5.533rem;
+    left: 1.12rem;
+    /* background: url(../img/n23/code.png) no-repeat center; */
+    background-size: 100% 100%;
+    opacity: 0;
+}
+.fourth-code img{
+	    width: 4.8rem;
+    height: 4.8rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+.fourth-sandbeach{
+	width: 100%;
+	height: 5.85rem;
+	position: absolute;
+	bottom: 0;
+	background: url("../img/n13/sandbeach.png") no-repeat center;
+	background-size: 100% 100%;
+	opacity: 0;
+}
+/* 第四屏触发后效果 cur */
+.cur .fourth-a{
+  transition: all 5s;
+  animation: translate-la 20s  linear 0s infinite alternate ;
+}
+
+.cur .fourth-b{  
+  transition: all 5s;
+  animation: translate-lb 20s  linear 0s infinite alternate ;
+}
+.cur .fourth-code, .cur .fourth-sandbeach {
+  transition: all 1.5s 2s ease-in-out;
+  opacity: 1;
+}
+.copyright{
+  width: 4.667rem;
+  height: 0.667rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: url("../img/copyright_whirt.png") no-repeat center;
+  -webkit-background-size: 4.667rem 0.667rem;
+  background-size: 4.667rem 0.667rem;
+  bottom: 0.267rem;
+  opacity: 0;
+
+}
+.cur .copyright{
+  opacity: 1;
+  transition: all 1.5s  ease-in-out 1s;
+}
+.mask{
+    width: 2rem;
+    height: 3rem;
+    background-color: transparent;
+    position: absolute;
+    bottom: 4rem;
+    right: 0.1rem;
+}
+@keyframes translate-lb {
+  from {
+    transform: translateX(0);
+    /*opacity: 1;*/
+  }
+  /*33% {
+ 	top: 4.5rem;;
+  }
+  66% {
+   top: 6rem;;
+  }*/
+  to {
+   transform: translateX(-1.547rem);
+    /*opacity: 0;*/
+  }
+  
+}
+@keyframes translate-la {
+  from {
+    transform: translateX(0);
+    /*opacity: 1;*/
+  }
+  /*33% {
+ 	top: 4.5rem;;
+  }
+  66% {
+   top: 6rem;;
+  }*/
+  to {
+    transform: translateX(1.72rem);
+    /*opacity: 0;*/
+  }
+  
+}
+.cur .current {
+  transition: all 1.5s 2s ease-in-out;
+  transform: scale(1.3);
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>名片详情</title>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+    <script src="lib/zepto.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./lib/zepto.fullpage.js"></script>
+    <!-- <script src="lib/js.fullpage.js" type="text/javascript" charset="utf-8"></script> -->
+    <!--<link rel="stylesheet" type="text/css" href="css/animate.css"/>-->
+    <script type="text/javascript" charset="utf-8">
+        ! function (e, t) {
+            function n() {
+                t.body ? t.body.style.fontSize = 12 * o + "px" : t.addEventListener("DOMContentLoaded", n)
+            }
+
+            function d() {
+                var e = i.clientWidth / 10;
+                i.style.fontSize = e + "px"
+            }
+            var i = t.documentElement,
+                o = e.devicePixelRatio || 1;
+            if (n(), d(), e.addEventListener("resize", d), e.addEventListener("pageshow", function (e) {
+                    e.persisted && d()
+                }), o >= 2) {
+                var a = t.createElement("body"),
+                    s = t.createElement("div");
+                s.style.border = ".5px solid transparent", a.appendChild(s), i.appendChild(a), 1 === s.offsetHeight &&
+                    i.classList.add("hairlines"), i.removeChild(a)
+            }
+        }(window, document);
+    </script>
+    <link rel="stylesheet" type="text/css" href="./lib/zepto.fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="css/float.css" />
+    <link rel="stylesheet" type="text/css" href="css/temp_4.css" />
+    <script src="./lib/infoCode.js"></script>
+</head>
+
+<body>
+    <div id="dowebok" class="wp">
+        <div class="wp-inner">
+            <!-- first 第一屏 首页 -->
+            <div class="page first ">
+                <div class="first-bg"></div>
+                <div class="first-bg1"></div>
+                <div class="first-bg2"></div>
+                <div class="first-bg3"></div>
+                <div class="first-bg4"></div>
+                <div class="first_bg_font">
+                    <!-- <p id="name" class="card_name">司马孔明</p>的名片 -->
+                    <p class="card_name">
+                        <span id="name"></span>
+                    </p>
+                </div>
+            </div>
+            <!-- second 第二屏 个人信息展示 -->
+            <div class="page second ">
+                <div class="second-bg"></div>
+                <div class="second-bg1"></div>
+                <div class="second-bg2"></div>
+                <div class="second-bg3"></div>
+                <div class="second-bg4"></div>
+                <div class="second-bg5"></div>
+
+                <div class="second-t-r">
+                    <img  id="deptpic"  alt="">
+                </div>
+
+                <ul class="myul-a">
+                    <li class="info-name1">姓名：
+                        <span id="namei"> </span>
+                    </li>
+                    <li class="info-post">职位：
+                        <span id="post"> </span>
+                    </li>
+                    <li class="info-units">公司：
+                        <span id="company"> </span>
+                    </li>
+                    <li class="info-phone">手机：
+                        <span id="mobile"> </span>
+                    </li>
+                    <li class="info-mail">邮箱：
+                        <span id="email"> </span>
+                    </li>
+                    <li class="info-tel">固话：
+                        <span id="tal"> </span>
+                    </li>
+                    <li class="info-url">网址：
+                        <span id="url"> </span>
+                    </li>
+                    <li class="info-site">地址：
+                        <span id="site"> </span>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- third 第三屏 公司简介 -->
+            <div class="page third">
+                <div class="third-bg"></div>
+                <div class="third-bg1"></div>
+                <div class="third-bg2"></div>
+                <div class="third-bg3"></div>
+                <div class="third-bg4"></div>
+                <div class="third-bg5"></div>
+                <div class="third-bg6"></div>
+                <!--    <div class="third-t-1"></div>
+                <div class="third-t-2"></div>
+                <div class="third-t-3"></div>
+                <div class="third-t-4"></div>
+                <div class="third-t-5"></div> -->
+
+                <div class="third-info">
+                    <!-- <ul>
+                        <li><span id="intro" class="info-intro"></span></li>
+                        <li>经营范围：<span id="" class=""></span></li>
+                    </ul> -->
+                    <h2 class="third-title">公司简介</h2>
+                    <p class="info-intro" id="intro" style="display: none;"></p>
+                    <p class="info-intro" id="intro_box"></p>
+                </div>
+            </div>
+            <!-- fourth 第四屏 二维码展示 -->
+            <div class="page fourth">
+                <div class="fourth-a"></div>
+                <div class="fourth-b"></div>
+                <div class="fourth-c"></div>
+                <div class="fourth-d"></div>
+                <div class="fourth-e"></div>
+                <div class="fourth-f"></div>
+                <div class="fourth-g"></div>
+                <div class="fourth-h"></div>
+                <div class="fourth-j" id="click"></div>
+                <div class="fourth-k"></div>
+                <div class="copyright"></div>
+                <img id="code_sc" class="fourth-code" src="https://www.bantucard.com/bantu/images/bantuCode.png">
+                <!--  <div class="fourth-code">
+                	<img src="img/n13/code-1.png"/>
+                </div> -->
+            </div>
+        </div>
+        <div id="up" class="float"></div>
+    </div>
+</body>
+<script>
+    var timer = null;
+    $('.wp-inner').fullpage({
+            drag: false, beforeChange: function (e) {
+            console.log(e.next);
+            console.log(e.next == 2);
+            var intro = document.getElementById('intro'),
+                intro_box = document.getElementById('intro_box');
+
+            if (e.next == 2) {
+                console.log(e.next + "true");
+                clearInterval(timer);
+                intro_box.innerHTML = "";
+                var i = 0;
+                timer = setInterval(function () {
+
+                    if (intro_box.innerHTML == intro.innerHTML) {
+                        clearInterval(timer);
+                    }
+                    intro_box.innerHTML += intro.innerHTML.substring(i, i + 1);
+                    i++;
+                    console.log(i)
+
+                }, 100);
+
+            } else {
+                console.log(e.next + "else");
+                console.log(timer);
+                clearInterval(timer)
+            }
+        },
+        });
+        $('#up').on('click', function (e) {
+            e.preventDefault();
+            $.fn.fullpage.moveNext(true);
+        });
+</script>
+
+</html>
