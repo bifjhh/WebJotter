@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>学员信息管理系统 - 学生信息列表</title>
+  <style>
+    table {
+      width: 1000px;
+    }
+
+    table thead tr th {
+      height: 35px;
+    }
+
+    table tbody tr td {
+      height: 25px;
+    }
+
+    #dvEdit div {
+      margin-bottom: 20px;
+    }
+  </style>
+
+  <script src="./js/jquery-3.2.1.js"></script>
+  <script src="./js/template-web.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script> -->
+  <script>
+    // 1. jquery 的 ready 事件
+    $(()=>{
+      function students(){
+        $.ajax({
+          url:'/students',
+          method:'post',
+          dataType:'json',
+          success:(data)=>{
+            // console.log(data.list);
+            var htmlCode = template('stu-list',{list:data.list});
+            $('#stbody').html(htmlCode);
+          }
+        });
+      };
+
+      // 1. 为加载数据按钮注册点击事件
+      $('#btnLoad').click(()=>{
+        // 通过 jQuery 向服务器发起 ajax 请求
+        students();
+      });
+
+      // 2. 为查看详情 注册点击事件(事件委托)
+      $('#stbody').on('click','a.info',function(){
+        // 1. 获取当前点击的学员的请求路径
+        // $(this).attr('href')
+        // console.log(this);
+        // console.log($(this).attr('href'));
+        $.ajax({
+          url: $(this).attr('href'),
+          method:'post',
+          dataType:'json',
+          success: (data)=> {
+            if(!data.status)return;
+            var infoCode = template('stu-details',{mod:data.info});
+            $('#dvInfo ul').html(infoCode);
+            $('#dvInfo').show();
+          }
+        });
+
+        return false;//阻止超链接进入链接地址
+      });
+
+      // 2.1关闭查看详情
+      $('#btnCloseInfo').click(()=>{
+        $('#dvInfo').hide();
+      });
+
+      // 3. 为编辑 注册点击事件(事件委托)
+      $('#stbody').on('click', 'a.edit', function (){
+        // console.log($(this).attr('href'));
+        // 1. 渲染籍贯列表
+        $.ajax({
+          url: '/cities',
+          method: 'post',
+          dataType: 'json',
+          success: (data) => {
+            if (!data.status) return;
+            var cityCode = template('city-list', { list: data.cities });
+            $('#saddredit').html(cityCode);
+          }
+        });
+        // 2. 渲染专业列表
+        $.ajax({
+          url: '/majors',
+          method: 'post',
+          dataType: 'json',
+          success: (data) => {
+            if (!data.status) return;
+            var majorCode = template('major-list', { list: data.majors });
+            $('#smajoredit').html(majorCode);
+          }
+        });
+        // 3. 渲染编辑页面
+        $.ajax({
+          url: $(this).attr('href'),
+          method:'post',
+          dataType:'json',
+          success: (data)=>{
+            if (!data.status) return;
+            // 3. 把读取到的学员详情设置到编辑 div 的表单元素中
+            $('#_idedit').val(data.info._id);
+            $('#snoedit').val(data.info.sno);
+            $('#snameedit').val(data.info.sname);
+            // 设置单选按钮选中
+            $(':radio').val([data.info.sgender === '男' ? 'M' : 'F']);
+            $('#sbirthdayedit').val(data.info.sbirthday);
+            $('#sphoneedit').val(data.info.sphone);
+            $('#saddredit').val(data.info.saddr);
+            $('#smajoredit').val(data.info.smajor);
+          }
+        });
+        $('#dvEdit').show();
+        return false;
+      });
+      // 3.2 保存编辑信息
+      $('#btnSaveedit').click(()=>{
+        var postData=$('#editForm').serialize();
+        $.ajax({
+          url:'/updateOne',
+          method:'post',
+          data:postData,
+          dataType:'json',
+          success:(data)=>{
+            if(!data.status)return;
+            students();
+            $('#dvEdit').hide();
+          }
+        });
+        return false;
+      });
+
+      // 4. 显示添加学员页面
+      $('#addLink').click(()=>{
+        // 1. 渲染籍贯列表
+        $.ajax({
+          url: '/cities',
+          method: 'post',
+          dataType: 'json',
+          success: (data) => {
+            if (!data.status) return;
+            var cityCode = template('city-list', { list: data.cities });
+            $('#saddr').html(cityCode);
+          }
+        });
+        // 2. 渲染专业列表
+        $.ajax({
+          url: '/majors',
+          method: 'post',
+          dataType: 'json',
+          success: (data) => {
+            if (!data.status) return;
+            var majorCode = template('major-list', { list: data.majors });
+            $('#smajor').html(majorCode);
+          }
+        });
+        // 3. 显示添加学员页面
+        $('#dvAdd').show();
+        return false;
+      });
+      // 4.1关闭添加学员界面
+      $('#btnCloseAdd').click(()=>{
+        $('#dvAdd').hide();
+      });
+
+      // 4.2 保存添加学员信息
+      $('#btnSave').click(()=>{
+        // 1. 获取表单中的数据
+        var postData=$('#addForm').serialize();
+        // 2. 向服务武器发起 ajax 请求,就爱你过表单中的数据提交给服务器
+        $.ajax({
+          url:'/addStu',
+          method:'post',
+          data:postData,
+          dataType:'json',
+          success:(data)=>{
+            // 3. 获取服务器返回的结果(判断是否成功)
+            // console.log(data);return;
+            if(data.status===1){
+              // 4. 如果成功,则提示用户,并刷新 table 中的数据:如果失败,提示用户添加失败
+              alert('添加成功');
+              students();
+              $('#dvAdd').hide();
+              $('#addForm')[0].reset(); 
+            }else{
+              alert('添加失败,请稍后再试');
+              return;
+            }
+          }
+        });
+
+
+
+        return false;
+      });
+
+      // 5. 删除学员
+      $('#stbody').on('click', 'a.del', function (){
+        if (confirm("确认删除吗?")) {
+          $.ajax({
+            url: $(this).attr('href'),
+            method:'post',
+            dataType:'json',
+            success: (data)=>{
+              if (!data.status) return;
+              alert('删除成功');
+              students();
+            }
+          });
+        };
+        return false;
+      });
+
+    });
+    
+  </script>
+
+  <!-- 用来渲染 students 列表数据 -->
+  <script id="stu-list" type="text/html">
+    <% for (var i = 0; i < list.length; i++) { %>
+      <tr>
+        <td>
+          <%= list[i]._id.slice(-5) %>
+        </td>
+        <td>
+          <%= list[i].sno %>
+        </td>
+        <td>
+          <%= list[i].sname %>
+        </td>
+        <td>
+          <%= list[i].sgender %>
+        </td>
+        <td>
+          <%= list[i].sbirthday %>
+        </td>
+        <td>
+          <%= list[i].sphone %>
+        </td>
+        <td>
+          <%= list[i].saddr %>
+        </td>
+        <td>
+          <%= list[i].smajor %>
+        </td>
+        <td>
+          <a class="info" href="/info?_id=<%= list[i]._id %>">查看</a> |
+          <a class="edit" href="/info?_id=<%= list[i]._id %>">编辑</a> |
+          <a class="del" href="/delete?_id=<%= list[i]._id %>">删除</a>
+        </td>
+      </tr>
+      <% } %>
+  </script>
+
+  <!-- 渲染城市列表 -->
+  <script id="city-list" type="text/html">
+    <!-- 循环 list 城市数据，生成对应的 option 标签 -->
+    <% for (var i = 0; i < list.length; i++) {%>
+      <option value="<%= list[i].cname %>">
+        <%= list[i].cname %>
+      </option>
+      <% }%>
+  </script>
+
+  <!-- 渲染专业信息列表 -->
+  <script id="major-list" type="text/html">
+    <!-- 循环 list 城市数据，生成对应的 option 标签 -->
+    <% for (var i = 0; i < list.length; i++) {%>
+      <option value="<%= list[i].name %>">
+        <%= list[i].name %>
+      </option>
+      <% }%>
+  </script>
+
+  <!-- 渲染详细信息 -->
+  <script id="stu-details" type="text/html">
+    <% for (var key in mod) {%>
+      <li>
+        <%= key%> :
+          <%= mod[key] %>
+      </li>
+      <% }%>
+  </script>
+</head>
+
+<body>
+  <h1>学员信息管理系统</h1>
+  <p>
+    <a id="addLink" href="#">添加学员</a>
+  </p>
+  <p>
+    <button id="btnLoad">加载数据</button>
+  </p>
+
+  <!-- 数据列表 -->
+  <table border="1">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>出生日期</th>
+        <th>联系电话</th>
+        <th>所属地</th>
+        <th>专业</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="stbody">
+    </tbody>
+  </table>
+
+
+  <!-- 显示学员详情界面 -->
+  <div id="dvInfo" style="display: none;">
+    <h1>学员详情</h1>
+    <ul>
+
+    </ul>
+    <button id="btnCloseInfo">关闭</button>
+  </div>
+
+  <!-- 显示编辑学员界面 -->
+  <div id="dvEdit" style="display: none;">
+    <h1>编辑学员信息</h1>
+    <form id="editForm">
+      <input type="hidden" name="_id" value="" id="_idedit">
+      <div>
+        <label for="sno">学号：</label>
+        <input type="text" name="sno" id="snoedit" value="">
+      </div>
+      <div>
+        <label for="sname">姓名：</label>
+        <input type="text" name="sname" id="snameedit" value="">
+      </div>
+      <div>
+        <span>性别：</span>
+        <label for="smale">男</label>
+        <input type="radio" name="sgender" id="smaleedit" value="M">
+        <label for="sfemale">女</label>
+        <input type="radio" name="sgender" id="sfemaleedit" value="F">
+      </div>
+      <div>
+        <label for="sbirthday">生日：</label>
+        <input type="date" name="sbirthday" id="sbirthdayedit" value="">
+      </div>
+      <div>
+        <label for="sphone">电话：</label>
+        <input type="text" name="sphone" id="sphoneedit" value="">
+      </div>
+      <div>
+        <label for="saddress">籍贯：</label>
+        <select name="saddr" id="saddredit">
+        </select>
+      </div>
+      <div>
+        <label for="smajor">专业：</label>
+        <select name="smajor" id="smajoredit">
+        </select>
+      </div>
+      <div>
+        <input type="submit" value="保存修改" id="btnSaveedit">
+      </div>
+    </form>
+  </div>
+
+
+  <!-- 显示添加学员界面 -->
+  <div id="dvAdd" style="display: none;">
+    <h1>添加学员</h1>
+    <form id="addForm">
+      <div>
+        <label for="sno">学号：</label>
+        <input type="text" name="sno" id="sno" value="">
+      </div>
+      <div>
+        <label for="sname">姓名：</label>
+        <input type="text" name="sname" id="sname" value="">
+      </div>
+      <div>
+        <span>性别：</span>
+        <label for="smale">男</label>
+        <input type="radio" name="sgender" id="smale" value="M">
+        <label for="sfemale">女</label>
+        <input type="radio" name="sgender" id="sfemale" value="F">
+      </div>
+      <div>
+        <label for="sbirthday">生日：</label>
+        <input type="date" name="sbirthday" id="sbirthday" value="">
+      </div>
+      <div>
+        <label for="sphone">电话：</label>
+        <input type="text" name="sphone" id="sphone" value="">
+      </div>
+      <div>
+        <label for="saddress">籍贯：</label>
+        <select name="saddr" id="saddr">
+        </select>
+      </div>
+      <div>
+        <label for="smajor">专业：</label>
+        <select name="smajor" id="smajor">
+        </select>
+      </div>
+      <div>
+        <input type="submit" value="保存学员信息" id="btnSave">
+        <input type="button" value="关闭" id="btnCloseAdd">
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
