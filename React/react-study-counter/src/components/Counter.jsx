@@ -41,18 +41,28 @@ export default class Counter extends React.Component {
 
   // 当执行到 render 函数的时候, 即将开始渲染内存中的 虚拟dom 了, 当执行完这个函数,内存中就有了一个渲染好的 虚拟DOM ,但是页面中尚未真正的显示 DOM 元素
   render() {
-    // console.log(document.getElementById('myh3'));
     // 正在 return 之前,虚拟DOM 尚未开始创建,
+    // console.log(document.getElementById('myh3'));
+    // 在组件运行阶段中,每次调用 render 函数的时候,页面上的 DOM元素,也是之前旧的
+    // console.log(this.refs.h3&&this.refs.h3.innerHTML); // 短路运算
+    
+    //  不要在 render 中使用 setState,因为会陷入死循环--因为状态修改就会调用 render,而 setState 就是 修改状态的
+    /* this.setState(
+        {
+          counter:this.state.counter+1
+        }
+      ) */
     return (
       <div>
         <h1>这是一个Counter 计数器</h1>
         <input id="btn" type="button" value="+1" onClick={this.increment}/>
-        <h3 id="myh3">当前的数量是:{this.state.counter}</h3>
+        <h3 id="myh3" ref='h3'>当前的数量是:{this.state.counter}</h3>
       </div>
     )
 
     // 当 return 结束后,虚拟DOM创建好了,但是还未挂载到页面当中
   }
+
   increment=()=>{
     this.setState(
         {
@@ -78,5 +88,36 @@ export default class Counter extends React.Component {
   } */
 
   }
+
+  // 从这里开始,就进入到了函数的运行阶段
+  // 判断组件是否需要更新的
+  shouldComponentUpdate(nextProps,nextState){
+    // 1. 在 shouldComponentUpdate 中,必须要求返回一个布尔值
+    // 2. 在 shouldComponentUpdate 中,如果返回值是 false,则不会继续执行后续的生命周期函数,而是直接退回了运行中的状态, 由于 render 函数并没有被调用,因此 页面并不会更新,但是组件中的 state 状态,却被修改了
+    // return true;
+
+    // 需求: 如果 state 中的 count 值是偶数,则更新页面,如果 count 值是 奇数,则不更新页面
+    // 通过 this.state.couner 获取的值,是进行自加前的值 
+    // console.log(nextState);
+    // console.log(this.state.counter%2===1);
+    // return nextState.counter%2===0?true:false;
+    return true;
+  }
+
+  // 组件将要更新,但是尚未更新,在进入这个生命周期的时候,内存中的 虚拟DOM 是尚未更新的,页面上的 DOM 也是尚未更新的
+  componentWillUpdate(){
+    // 此时,页面上的 DOM 节点都是更新之前的.
+    // console.log(document.getElementById('myh3').innerHTML);
+    // console.log(this.refs.h3.innerHTML);
+
+  }
+
+  // 组件完成了更新,此时 state 中的数据卖虚拟DOM,页面上的DOM 都是更新后的,可以放心的操作了
+  componentDidUpdate(){
+    // console.log(this.refs.h3.innerHTML);
+  }
+
+
+
 
 }
