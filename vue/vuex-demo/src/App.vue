@@ -21,7 +21,8 @@ export default {
   },
   methods: {
     increment() {
-      store.commit("increment");
+      store.dispatch("increment");
+      console.log('store.dispatch')
     },
     decrement() {
       store.commit("decrement");

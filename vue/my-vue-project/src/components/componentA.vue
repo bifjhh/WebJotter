@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
       <h1>{{msg}}</h1>
-      <button v-on:click="onClickMe">Click!</button>
+      <button @click="onClickMe">Click!</button>
   </div>
 </template>
 <script>
