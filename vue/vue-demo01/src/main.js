@@ -1,6 +1,9 @@
 import Vue from 'vue'
-
+import App from './App'
+import store from './store/index.js'
 new Vue({
-  el:'#app',
-  template:`<div>hello World</div>`
+  el: '#app',
+  store,
+  components: { App },
+  template: '<App/>'
 })
