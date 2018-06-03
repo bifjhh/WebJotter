@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>{{ count }}</h1>
-    <h1>test:{{ test}}</h1>
     <h2>{{ countPlusLocalState }}</h2>
      <button @click="increment">+</button>
      <button @click="decrement">-</button>
@@ -14,11 +13,9 @@ import { mapState } from "vuex";
 
 export default {
   name: "App",
-  data() {
-    return {
-      localCount: 2
-    };
-  },
+  data: () => ({
+    localCount: 1
+  }),
   /* computed: mapState({
     count: "count",
     test: test => store.state.test,
