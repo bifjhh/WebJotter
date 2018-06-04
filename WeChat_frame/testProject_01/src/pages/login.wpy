@@ -1,0 +1,47 @@
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Counter from 'counter' // alias example
+  import moduleA from 'module-a' // aliasFields ignore module example
+  import Toast from 'wepy-com-toast'
+
+  console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
+
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'index'
+    }
+    components = {
+    
+    }
+
+
+    data={
+
+    }
+
+    computed = {
+     
+    }
+
+    methods = {}
+
+    events = {
+     
+    }
+
+    onLoad() {
+     
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
