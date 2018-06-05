@@ -2,30 +2,55 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
-    <p>{{ count }}</p>
+     <p>可被改变的值:{{ count }}</p>
     <p>
       <button @click="increment">+</button>
       <button @click="decrement">-</button>
     </p>
+    <P>{{doneTodosCount}}</P>
+     <P>{{doneTodos}}</P>
+    <P>{{doneTodosCount}}</P>
+     <P>{{getTodoById}}</P>
   </div>
 </template>
 
 <script>
-import store from './store.js'
+import store from "./store.js";
+import { mapGetters  } from "Vuex";
 export default {
   name: "App",
-  computed: {
-    count() {
-      return store.state.count;
-    }
+/*   computed: {
+      ...mapGetters([
+      'doneTodosCount',
+      'anotherGetter',
+      // ...
+    ])
+  }, */
+   computed: {
+    count(){
+      return this.$store.state.count
+    },
+    doneTodos(){
+      return store.getters.doneTodos
+    },
+    doneTodosCount(){
+      return store.getters.doneTodosCount
+    },
+    getTodoById(){
+      return store.getters.getTodoById(2)
+    },
+    // doneTodosCount() {
+    //   return this.$store.state.todos.filter(todo => todo.done).length;
+    // }
   },
   methods: {
     increment() {
-      store.dispatch("increment");
-      console.log('store.dispatch')
+      store.commit("increment");
+      // store.dispatch("increment");
     },
     decrement() {
       store.commit("decrement");
+      // store.dispatch("decrement");
     }
   }
 };
