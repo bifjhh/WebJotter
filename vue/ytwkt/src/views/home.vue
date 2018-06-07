@@ -15,13 +15,21 @@ export default {
   components: {
     Banner
   },
-  data:() => ( {
-      list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    }),
-  methods:{
-    toInfo(e){
-      if(e.target.dataset.type){
-        console.log(e.target.dataset.type)
+  created() {
+    this.$http
+      .post("/api", { code: "_bannerlist_001", id: "255" ,name:'微网站banner图列表',module:'Home',controller:'Web',action:'bannerlist',token: '1e56c95504a9a846e4c7043704a20f25'})
+      .then(res => {
+        console.log(res);
+      });
+  },
+
+  data: () => ({
+    list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  }),
+  methods: {
+    toInfo(e) {
+      if (e.target.dataset.type) {
+        console.log(e.target.dataset.type);
       }
     }
   }

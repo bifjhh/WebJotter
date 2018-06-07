@@ -1,10 +1,10 @@
 module.exports = {
   proxy: {
-    '/apis': {    //将www.exaple.com印射为/apis
-      target: 'http://localhost:8888/',  // 接口域名
+    '/api': {    //将www.exaple.com印射为/apis
+      target: 'http://180.76.52.158',  // 接口域名
       changeOrigin: true,  //是否跨域
       pathRewrite: {
-        '^/apis': ''   //需要rewrite的,
+        '^/api': ''   //需要rewrite的,
       }
     }
   }
