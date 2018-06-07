@@ -47,6 +47,6 @@ const store = new Vuex.Store({
       // test
     }
   }
-})
+});
 
 export default store

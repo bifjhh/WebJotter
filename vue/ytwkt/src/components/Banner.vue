@@ -1,6 +1,6 @@
 <template>
   <div class="banner_box">
-    <el-carousel indicator-position="outside" height="4.8rem">
+    <el-carousel indicator-position="outside" height="4.8rem" trigger="click" arrow="never">
     <el-carousel-item v-for="item in 5" :key="item">
       <h3>{{ item }}</h3>
     </el-carousel-item>

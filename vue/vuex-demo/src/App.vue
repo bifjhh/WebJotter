@@ -48,7 +48,7 @@
       // }
     },
     methods: {
-      increment() {
+      increment: function () {
         // store.commit("increment");
         store.dispatch("increment");
       },
