@@ -12,7 +12,6 @@ http.createServer(function(req,res){
     // require,response
     // 1. 获取用户请求的路径
     // var url = req.url;
-
     // 2. 获取public目录的完整路径
     var publicDir = path.join(__dirname,'public');
 
@@ -23,6 +22,7 @@ http.createServer(function(req,res){
     fs.readFile(filename,function (err,data) {
         
         if(err){
+            res.setHeader('Content-Type', 'text/html;charset=utf-8');
             res.end('文件不存在 404');
         }else{
             // 通过第npm三方模块 mime 来判断不同的资源对应的Content-Type类型 

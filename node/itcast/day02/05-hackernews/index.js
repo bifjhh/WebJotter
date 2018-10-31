@@ -50,7 +50,7 @@ http.createServer(function (req, res) {
 
 	// 通过 url 模块,调用 url.parse() 方法,解析用户请求的url(req.url)
 	var urlObj = url.parse(req.url, true);
-	// console.log(urlObj);
+	console.log(urlObj);
 
 
 
