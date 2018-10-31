@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "node"
+		},
+		{
+			"path": "React"
+		},
+		{
+			"path": "webpack"
+		}
+	]
+}
