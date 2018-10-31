@@ -4,9 +4,7 @@ var fs = require('fs');
 // 此处的 ./ 相对路径 相对的是执行node命令的路径
 // 而不是相对于正在执行的这个 js 文件来查找 hello.txt
 fs.readFile('./hello.txt', 'utf8', function (err, data) {
-    if (err) {
-        throw err;
-    }
+    if (err) throw '出错了'+ err;
     console.log(data);
 })
 
