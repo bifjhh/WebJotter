@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "webpack"
+		},
+		{
+			"path": "TypeScript"
 		}
-	]
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "TypeScript"
+	}
 }
